@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+CSS 测验	结果:20/0
+1. CSS 指的是？
+你的回答: Cascading Style Sheets
+ 回答正确!
+2. 在以下的 HTML 中，哪个是正确引用外部样式表的方法？
+你的回答: <link rel="stylesheet" type="text/css" href="mystyle.css">
+ 回答正确!
+3. 在 HTML 文档中，引用外部样式表的正确位置是？
+你的回答: <head> 部分
+ 回答正确!
+4. 哪个 HTML 标签用于定义内部样式表？
+你的回答: <style>
+ 回答正确!
+5. 哪个 HTML 属性可用来定义内联样式？
+你的回答: style
+ 回答正确!
+6. 下列哪个选项的 CSS 语法是正确的？
+你的回答: body {color: black}
+ 回答正确!
+7. 如何在 CSS 文件中插入注释？
+你的回答: /* this is a comment */
+ 回答正确!
+8. 哪个属性可用于改变背景颜色？
+你的回答: background-color:
+ 回答正确!
+9. 如何为所有的 <h1> 元素添加背景颜色？
+你的回答: h1 {background-color:#FFFFFF}
+ 回答正确!
+10. 如何改变某个元素的文本颜色？
+你的回答: color:
+ 回答正确!
+11. 哪个 CSS 属性可控制文本的尺寸？
+你的回答: font-size
+ 回答正确!
+12. 在以下的 CSS 中，可使所有 <p> 元素变为粗体的正确语法是？
+你的回答: p {font-weight:bold}
+ 回答正确!
+13. 如何显示没有下划线的超链接？
+你的回答: a {text-decoration:none}
+ 回答正确!
+14. 如何使文本以大写字母开头？
+你的回答: text-transform:capitalize
+ 回答正确!
+15. 如何改变元素的字体？
+你的回答: font-family:
+ 回答正确!
+16. 如何使文本变为粗体？
+你的回答: font-weight:bold
+ 回答正确!
+17. 如何显示这样一个边框：上边框 10 像素、下边框 5 像素、左边框 20 像素、右边框 1 像素？
+你的回答: border-width:10px 1px 5px 20px
+ 回答正确!
+18. 如何改变元素的左边距？
+你的回答: margin-left:
+ 回答正确!
+19. 请判断以下说法是否正确：如需定义元素内容与边框间的空间，可使用 padding 属性，并可使用负值？
+你的回答: 错误
+ 回答正确!
+20. 如何产生带有正方形项目的列表？
+你的回答: list-style-type: square
+ 回答正确!
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "cainiao_css.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
