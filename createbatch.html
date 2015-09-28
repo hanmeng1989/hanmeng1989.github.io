@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##如何创建批处理文件
+本文来源于百度经验，地址：<a href="http://jingyan.baidu.com/article/4dc40848851db9c8d946f18e.html">http://jingyan.baidu.com/article/4dc40848851db9c8d946f18e.html</a>
+
+<b>批处理，顾名思义就是进行批量的处理。批处理文件是扩展名为·bat 或·cmd的文本文件，包含一条或多条命令，由DOS或Windows系统内嵌的命令解释器来解释运行。它使用方便、灵活，功能强大，自动化程度高。那么它是如何创建的呢？下面为大家简单介绍一个“清除系统垃圾文件”的批处理文件的创建。</b>
+
+###1.  在桌面鼠标依次右键——>新建——>文本文档； 
+
+###2.  在记事本中输入命令：
+@echo off   
+echo 正在清除系统垃圾文件，请稍等......   
+del /f /s /q %systemdrive%\*.tmp   
+del /f /s /q %systemdrive%\*._mp   
+del /f /s /q %systemdrive%\*.log   
+del /f /s /q %systemdrive%\*.gid   
+del /f /s /q %systemdrive%\*.chk   
+del /f /s /q %systemdrive%\*.old   
+del /f /s /q %systemdrive%\recycled\*.*   
+del /f /s /q %windir%\*.bak   
+del /f /s /q %windir%\prefetch\*.*   
+rd /s /q %windir%\temp & md %windir%\temp   
+del /f /q %userprofile%\cookies\*.*   
+del /f /q %userprofile%\recent\*.*   
+del /f /s /q "%userprofile%\Local Settings\Temporary Internet Files\*.*"   
+del /f /s /q "%userprofile%\Local Settings\Temp\*.*"   
+del /f /s /q "%userprofile%\recent\*.*"   
+echo 清除系统垃圾完成！   
+echo. & pause   
+###3.保存文档
+###4.将文件扩展名修改为.bat或.cmd，然后点击确定保存即可。双击创建好的批处理文件即可清除系统垃圾！
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="">如何创建批处理文件</h2>
+
+<p>本文来源于百度经验，地址：<a href="http://jingyan.baidu.com/article/4dc40848851db9c8d946f18e.html">http://jingyan.baidu.com/article/4dc40848851db9c8d946f18e.html</a></p>
+
+<p><b>批处理，顾名思义就是进行批量的处理。批处理文件是扩展名为·bat 或·cmd的文本文件，包含一条或多条命令，由DOS或Windows系统内嵌的命令解释器来解释运行。它使用方便、灵活，功能强大，自动化程度高。那么它是如何创建的呢？下面为大家简单介绍一个“清除系统垃圾文件”的批处理文件的创建。</b></p>
+
+<h3 id="1">1.  在桌面鼠标依次右键——&gt;新建——&gt;文本文档；</h3>
+
+<h3 id="2">2.  在记事本中输入命令：</h3>
+
+<p>@echo off <br>
+echo 正在清除系统垃圾文件，请稍等...... <br>
+del /f /s /q %systemdrive%*.tmp <br>
+del /f /s /q %systemdrive%*._mp <br>
+del /f /s /q %systemdrive%*.log <br>
+del /f /s /q %systemdrive%*.gid <br>
+del /f /s /q %systemdrive%*.chk <br>
+del /f /s /q %systemdrive%*.old <br>
+del /f /s /q %systemdrive%\recycled*.* <br>
+del /f /s /q %windir%*.bak <br>
+del /f /s /q %windir%\prefetch*.* <br>
+rd /s /q %windir%\temp &amp; md %windir%\temp <br>
+del /f /q %userprofile%\cookies*.* <br>
+del /f /q %userprofile%\recent*.* <br>
+del /f /s /q "%userprofile%\Local Settings\Temporary Internet Files*.<em>" <br>
+del /f /s /q "%userprofile%\Local Settings\Temp*.</em>" <br>
+del /f /s /q "%userprofile%\recent*.*" <br>
+echo 清除系统垃圾完成！ <br>
+echo. &amp; pause   </p>
+
+<h3 id="3">3.保存文档</h3>
+
+<h3 id="4batcmd">4.将文件扩展名修改为.bat或.cmd，然后点击确定保存即可。双击创建好的批处理文件即可清除系统垃圾！</h3>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "createbatch.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
