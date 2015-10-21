@@ -25,6 +25,8 @@
 	</div>
 <div id="md" style="display: none;">
 <!-- markdown -->
+  做项目时碰到一个问题，就是要把一个SQL server中的某个字段的所有汉字（Cname）转换为拼音，并存储到另一个字段中(Username)，从网上找了好久然后找到了这个函数，感觉很好，就直接拿来用了
+
     USE RCMSTEST  
     go  
   
@@ -451,12 +453,18 @@
     end  
     return(@re)  
     END
-    GO  
-    update RL_HRM_Employees set Username=dbo.fn_GetQuanPin(Cname) `
+算法拿过来之后，就可直接调用了，下面是利用该算法将Cname中的汉字全部转换为拼音并存储在Username中，一秒钟搞定。拿来主义就是好！
+```sql
+GO  
+update RL_HRM_Employees set Username=dbo.fn_GetQuanPin(Cname) 
+```
+附：拿来网址：<a href=“http://blog.csdn.net/roy_88/article/details/8772631” target='_blank'>http://blog.csdn.net/roy_88/article/details/8772631</a>
 <!-- markdown end -->
 </div>
 <div class="entry" id="main">
 <!-- content -->
+<p>做项目时碰到一个问题，就是要把一个SQL server中的某个字段的所有汉字（Cname）转换为拼音，并存储到另一个字段中(Username)，从网上找了好久然后找到了这个函数，感觉很好，就直接拿来用了</p>
+
 <pre><code>USE RCMSTEST  
 go  
 
@@ -883,9 +891,15 @@ set @crs= substring(@str,@strlen,1)
 end  
 return(@re)  
 END
-GO  
-update RL_HRM_Employees set Username=dbo.fn_GetQuanPin(Cname) `
 </code></pre>
+
+<p>算法拿过来之后，就可直接调用了，下面是利用该算法将Cname中的汉字全部转换为拼音并存储在Username中，一秒钟搞定。拿来主义就是好！</p>
+
+<pre><code class="sql">GO  
+update RL_HRM_Employees set Username=dbo.fn_GetQuanPin(Cname) 
+</code></pre>
+
+<p>附：拿来网址：<a href="“http://blog.csdn.net/roy_88/article/details/8772631”" target="_blank">http://blog.csdn.net/roy_88/article/details/8772631</a></p>
 <!-- content end -->
 </div>
 <br>
