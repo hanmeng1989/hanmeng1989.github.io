@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##UITableView相关
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们在使用UITableView的分组时，有时会想到只使用分组的HeaderView或者只使用FooterView，这时候就需要把不使用的那一部分取消掉，让其不显示。<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么如何使tableView分组的headerView或者footerView不显示呢？<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一般情况下，我们首先会想到下面这两个方法，然后给它们的返回值设置为0。
+~~~~{ruby}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0;
+}
+~~~~
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是，当你设置完，并经过反复的试验后，你就会发现，并没有什么卵用。<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过多方查阅资料，百度、Google以及向同事请教后发现，此处返回的高度不能直接return 0; 若直接return 0，则会显示一段默认的高度，而这个默认的高度并不是我们想要的。正确的写法是：返回一个灰常灰常小的高度，比如0.1，这样就不会再显示默认的高度了，而是显示的我们肉眼并不能看出来的0.1。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 代码如下：<br>
+
+~~~~{ruby}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.1;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1;
+}
+~~~~
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="uitableview">UITableView相关</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们在使用UITableView的分组时，有时会想到只使用分组的HeaderView或者只使用FooterView，这时候就需要把不使用的那一部分取消掉，让其不显示。<br></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么如何使tableView分组的headerView或者footerView不显示呢？<br></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一般情况下，我们首先会想到下面这两个方法，然后给它们的返回值设置为0。</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">-</span> <span class="token punctuation">(</span><span class="token constant">CGFloat</span><span class="token punctuation">)</span>tableView<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">UITableView</span> <span class="token operator">*</span><span class="token punctuation">)</span>tableView heightForHeaderInSection<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">NSInteger</span><span class="token punctuation">)</span>section<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token constant">CGFloat</span><span class="token punctuation">)</span>tableView<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">UITableView</span> <span class="token operator">*</span><span class="token punctuation">)</span>tableView heightForFooterInSection<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">NSInteger</span><span class="token punctuation">)</span>section<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是，当你设置完，并经过反复的试验后，你就会发现，并没有什么卵用。<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过多方查阅资料，百度、Google以及向同事请教后发现，此处返回的高度不能直接return 0; 若直接return 0，则会显示一段默认的高度，而这个默认的高度并不是我们想要的。正确的写法是：返回一个灰常灰常小的高度，比如0.1，这样就不会再显示默认的高度了，而是显示的我们肉眼并不能看出来的0.1。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 代码如下：<br>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">-</span> <span class="token punctuation">(</span><span class="token constant">CGFloat</span><span class="token punctuation">)</span>tableView<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">UITableView</span> <span class="token operator">*</span><span class="token punctuation">)</span>tableView heightForHeaderInSection<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">NSInteger</span><span class="token punctuation">)</span>section<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0.1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token operator">-</span> <span class="token punctuation">(</span><span class="token constant">CGFloat</span><span class="token punctuation">)</span>tableView<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">UITableView</span> <span class="token operator">*</span><span class="token punctuation">)</span>tableView heightForFooterInSection<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">NSInteger</span><span class="token punctuation">)</span>section<span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0.1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "tableview.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
