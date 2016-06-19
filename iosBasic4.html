@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##利用通知监听键盘frame改变
+在iOS开发中，点击textField或者textView时，会自动弹出键盘输入框，这时候有可能就会将文本输入框遮盖。所以我们需要将view上移一段距离，而这段距离正是键盘的高度。
+我们可以利用通知来监听键盘键盘的frame改变来上移view.
+
+代码如下：<br>
+
+~~~~{ruby}
+// 利用通知改变view的高度（让view上移键盘的高度）
+    //通知机制
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    //添加监视器
+    [center addObserver:self selector:@selector(keyboardWillChangeFrameNotification:) name:UIKeyboardWillChangeFrameNotification object:nil];
+~~~~
+键盘改变大小时调用该方法<br>
+~~~~{ruby}
+/**
+ *  键盘改变大小时调用该方法
+ */
+-(void)keyboardWillChangeFrameNotification:(NSNotification *)note{
+    CGRect kbFrame = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    //计算view垂直方向移动的距离
+    CGFloat transformY = kbFrame.origin.y - self.view.frame.size.height;
+    self.view.transform = CGAffineTransformMakeTranslation(0, transformY);
+}
+~~~~
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="frame">利用通知监听键盘frame改变</h2>
+
+<p>在iOS开发中，点击textField或者textView时，会自动弹出键盘输入框，这时候有可能就会将文本输入框遮盖。所以我们需要将view上移一段距离，而这段距离正是键盘的高度。
+我们可以利用通知来监听键盘键盘的frame改变来上移view.</p>
+
+<p>代码如下：<br></p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 利用通知改变view的高度（让view上移键盘的高度）
+    <span class="token operator">/</span><span class="token operator">/</span>通知机制
+    <span class="token constant">NSNotificationCenter</span> <span class="token operator">*</span>center <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">NSNotificationCenter</span> defaultCenter<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token operator">/</span><span class="token operator">/</span>添加监视器
+    <span class="token punctuation">[</span>center addObserver<span class="token symbol">:self</span> selector<span class="token punctuation">:</span><span class="token variable">@selector</span><span class="token punctuation">(</span>keyboardWillChangeFrameNotification<span class="token punctuation">:</span><span class="token punctuation">)</span> name<span class="token symbol">:UIKeyboardWillChangeFrameNotification</span> object<span class="token symbol">:nil</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>键盘改变大小时调用该方法<br>
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+ <span class="token operator">*</span>  键盘改变大小时调用该方法
+ <span class="token operator">*</span><span class="token operator">/</span>
+<span class="token operator">-</span><span class="token punctuation">(</span>void<span class="token punctuation">)</span>keyboardWillChangeFrameNotification<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">NSNotification</span> <span class="token operator">*</span><span class="token punctuation">)</span>note<span class="token punctuation">{</span>
+    <span class="token constant">CGRect</span> kbFrame <span class="token operator">=</span> <span class="token punctuation">[</span>note<span class="token punctuation">.</span>userInfo<span class="token punctuation">[</span><span class="token constant">UIKeyboardFrameEndUserInfoKey</span><span class="token punctuation">]</span> <span class="token constant">CGRectValue</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token operator">/</span><span class="token operator">/</span>计算view垂直方向移动的距离
+    <span class="token constant">CGFloat</span> transformY <span class="token operator">=</span> kbFrame<span class="token punctuation">.</span>origin<span class="token punctuation">.</span>y <span class="token operator">-</span> <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>frame<span class="token punctuation">.</span>size<span class="token punctuation">.</span>height<span class="token punctuation">;</span>
+    <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>transform <span class="token operator">=</span> <span class="token function">CGAffineTransformMakeTranslation<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> transformY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "iosBasic4.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
