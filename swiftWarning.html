@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+## Swift2.2中警告提示
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OC中可以通过`#warning`方法来提醒自己将来需要注意的地方，但是在使用Swift创建项目时，目前Xcode版本（本人使用的Xcode 7.3版本）没有这样的功能产生黄色警告。
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这时候就需要我们自己手动去让Xcode产生这个功能了。接下来就来介绍下如何开启这个功能：<br>
+第一步：在项目内部找到Build Phases，选择坐标的“+”号，如下图所示：<span class="loading">upload image now!</span>
+第二步：添加 New Run Script Phase，点击了之后就出现了下图的Run Script栏<span class="loading">upload image now!</span>
+第三步：在蓝色区域添加下面代码
+
+~~~~{ruby}
+TAGS="TODO:|FIXME:|WARNING:"
+echo "searching ${SRCROOT} for ${TAGS}"
+find "${SRCROOT}" \( -name "*.swift" \) -print0 | xargs -0 egrep --with-filename --line-number --only-matching "($TAGS).*\$" | perl -p -e "s/($TAGS)/ warning: \$1/"
+~~~~
+<span class="loading">upload image now!</span>
+根据个人不同的需求，TODO: 和 FIXME: 是可以在代码中改变的。
+记住TODO和分号之后不能有空格哦
+最终效果图如下：<span class="loading">upload image now!</span>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上，在阅读一些开源代码时，我们常会碰到诸如：TODO、FIXME和XXX的单词，它们是有其特殊含义的。
+
+**TODO: + 说明：**<br>
+如果代码中有该标识，说明在标识处有功能代码待编写，待实现的功能在说明中会简略说明。
+
+**FIXME: + 说明：**<br>
+如果代码中有该标识，说明标识处代码需要修正，甚至代码是错误的，不能工作，需要修复，如何修正会在说明中简略说明。
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="swift22">Swift2.2中警告提示</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OC中可以通过<code>#warning</code>方法来提醒自己将来需要注意的地方，但是在使用Swift创建项目时，目前Xcode版本（本人使用的Xcode 7.3版本）没有这样的功能产生黄色警告。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这时候就需要我们自己手动去让Xcode产生这个功能了。接下来就来介绍下如何开启这个功能：<br>
+第一步：在项目内部找到Build Phases，选择坐标的“+”号，如下图所示：<span class="loading">upload image now!</span>
+第二步：添加 New Run Script Phase，点击了之后就出现了下图的Run Script栏<span class="loading">upload image now!</span>
+第三步：在蓝色区域添加下面代码</p>
+
+<p></p><pre class=" language-ruby"><code class=" language-ruby"><span class="token constant">TAGS</span><span class="token operator">=</span><span class="token string">"TODO:|FIXME:|WARNING:"</span>
+echo <span class="token string">"searching ${SRCROOT} for ${TAGS}"</span>
+find <span class="token string">"${SRCROOT}"</span> <span class="token punctuation">(</span> <span class="token operator">-</span>name <span class="token string">".swift"</span> <span class="token punctuation">)</span> <span class="token operator">-</span>print0 <span class="token operator">|</span> xargs <span class="token operator">-</span><span class="token number">0</span> egrep <span class="token operator">--</span>with<span class="token operator">-</span>filename <span class="token operator">--</span>line<span class="token operator">-</span>number <span class="token operator">--</span>only<span class="token operator">-</span>matching <span class="token string">"($TAGS).\$"</span> <span class="token operator">|</span> perl <span class="token operator">-</span>p <span class="token operator">-</span>e <span class="token string">"s/($TAGS)/ warning: \$1/"</span>
+</code></pre><span class="loading">upload image now!</span>
+根据个人不同的需求，TODO: 和 FIXME: 是可以在代码中改变的。
+记住TODO和分号之后不能有空格哦
+最终效果图如下：<span class="loading">upload image now!</span><p></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上，在阅读一些开源代码时，我们常会碰到诸如：TODO、FIXME和XXX的单词，它们是有其特殊含义的。</p>
+
+<p><strong>TODO: + 说明：</strong><br>
+如果代码中有该标识，说明在标识处有功能代码待编写，待实现的功能在说明中会简略说明。</p>
+
+<p><strong>FIXME: + 说明：</strong><br>
+如果代码中有该标识，说明标识处代码需要修正，甚至代码是错误的，不能工作，需要修复，如何修正会在说明中简略说明。</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "swiftWarning.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
