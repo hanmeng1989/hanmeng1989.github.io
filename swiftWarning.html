@@ -40,12 +40,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OC中可以通过`#warning`方法来提醒自己将来需要注意的地方，但是在使用Swift创建项目时，目前Xcode版本（本人使用的Xcode 7.3版本）没有这样的功能产生黄色警告。
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这时候就需要我们自己手动去让Xcode产生这个功能了。接下来就来介绍下如何开启这个功能：<br>
-第一步：在项目内部找到Build Phases，选择坐标的“+”号，如下图所示：
-<span class="loading">upload image now!</span>
-第二步：添加 New Run Script Phase，点击了之后就出现了下图的Run Script栏
-
-第三步：在蓝色区域添加下面代码
-
+**第一步：**在项目内部找到Build Phases，选择坐标的“+”号，如下图所示：
+ ![](http://hanmeng1989.github.io/img/firstStep.png)
+**第二步：**添加 New Run Script Phase，点击了之后就出现了下图的Run Script栏
+ ![](http://hanmeng1989.github.io/img/secondStep.png)
+**第三步：**在蓝色区域添加下面代码
+![](http://hanmeng1989.github.io/img/thirdStep.png)
 ~~~~{ruby}
 TAGS="TODO:|FIXME:|WARNING:"
 echo "searching ${SRCROOT} for ${TAGS}"
@@ -56,7 +56,7 @@ find "${SRCROOT}" \( -name "*.swift" \) -print0 | xargs -0 egrep --with-filename
 记住TODO和分号之后不能有空格哦
 
 最终效果图如下：
-<span class="loading">upload image now!</span>
+ ![](http://hanmeng1989.github.io/img/xiaoguotu.png)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上，在阅读一些开源代码时，我们常会碰到诸如：TODO、FIXME和XXX的单词，它们是有其特殊含义的。
 
 **TODO: + 说明：**<br>
@@ -73,11 +73,12 @@ find "${SRCROOT}" \( -name "*.swift" \) -print0 | xargs -0 egrep --with-filename
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OC中可以通过<code>#warning</code>方法来提醒自己将来需要注意的地方，但是在使用Swift创建项目时，目前Xcode版本（本人使用的Xcode 7.3版本）没有这样的功能产生黄色警告。</p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这时候就需要我们自己手动去让Xcode产生这个功能了。接下来就来介绍下如何开启这个功能：<br>
-第一步：在项目内部找到Build Phases，选择坐标的“+”号，如下图所示：
-<span class="loading">upload image now!</span>
-第二步：添加 New Run Script Phase，点击了之后就出现了下图的Run Script栏</p>
-
-<p>第三步：在蓝色区域添加下面代码</p>
+<strong>第一步：</strong>在项目内部找到Build Phases，选择坐标的“+”号，如下图所示：
+ <img src="http://hanmeng1989.github.io/img/firstStep.png" alt="" title="">
+<strong>第二步：</strong>添加 New Run Script Phase，点击了之后就出现了下图的Run Script栏
+ <img src="http://hanmeng1989.github.io/img/secondStep.png" alt="" title="">
+<strong>第三步：</strong>在蓝色区域添加下面代码
+<img src="http://hanmeng1989.github.io/img/thirdStep.png" alt="" title=""></p>
 
 <pre class=" language-ruby"><code class=" language-ruby"><span class="token constant">TAGS</span><span class="token operator">=</span><span class="token string">"TODO:|FIXME:|WARNING:"</span>
 echo <span class="token string">"searching ${SRCROOT} for ${TAGS}"</span>
@@ -88,7 +89,7 @@ find <span class="token string">"${SRCROOT}"</span> \<span class="token punctuat
 记住TODO和分号之后不能有空格哦</p>
 
 <p>最终效果图如下：
-<span class="loading">upload image now!</span>
+ <img src="http://hanmeng1989.github.io/img/xiaoguotu.png" alt="" title="">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上，在阅读一些开源代码时，我们常会碰到诸如：TODO、FIXME和XXX的单词，它们是有其特殊含义的。</p>
 
 <p><strong>TODO: + 说明：</strong><br>
