@@ -42,10 +42,10 @@
 ~~~~{ruby}
  UILabel *titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     
-    titleView.textAlignment = NSTextAlignmentCenter;
-    // 注：
-    titleView.numberOfLines = 0;
-    NSString *titleStr = @"发布微博\n hanmeng";
+titleView.textAlignment = NSTextAlignmentCenter;
+#warning 一定要加这个属性，\n后面的值才会出来，否则出不来
+titleView.numberOfLines = 0;
+NSString *titleStr = @"发布微博\n hanmeng";
 ~~~~
 
 第二步，定义一个可变的NSMutableAttributedString，便于添加
@@ -56,19 +56,18 @@ NSMutableAttributedString *attributes = [[NSMutableAttributedString alloc] initW
 ~~~~{ruby}
 [attributes addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, 4)];
     
-    [attributes addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(6, titleStr.length - 6)];
+[attributes addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:NSMakeRange(6, titleStr.length - 6)];
     
-    [attributes addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:NSMakeRange(6, titleStr.length - 6)];
+[attributes addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:NSMakeRange(6, titleStr.length - 6)];
 ~~~~
 
 第四步，赋值
 ~~~~{ruby}
-    titleView.attributedText = attributes;
-    
-    self.navigationItem.titleView = titleView;
+titleView.attributedText = attributes;   
+self.navigationItem.titleView = titleView;
 ~~~~
 最终效果图如下：
-
+ ![](http://hanmeng1989.github.io/img/titlexiaoguo.png)
 <!-- markdown end -->
 </div>
 <div class="entry" id="main">
@@ -81,10 +80,10 @@ NSMutableAttributedString *attributes = [[NSMutableAttributedString alloc] initW
 
 <pre class=" language-ruby"><code class=" language-ruby"> <span class="token constant">UILabel</span> <span class="token operator">*</span>titleView <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">UILabel</span> alloc<span class="token punctuation">]</span> initWithFrame<span class="token symbol">:CGRectMake</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-    titleView<span class="token punctuation">.</span>textAlignment <span class="token operator">=</span> <span class="token constant">NSTextAlignmentCenter</span><span class="token punctuation">;</span>
-    <span class="token operator">/</span><span class="token operator">/</span> 注：
-    titleView<span class="token punctuation">.</span>numberOfLines <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token constant">NSString</span> <span class="token operator">*</span>titleStr <span class="token operator">=</span> @<span class="token string">"发布微博\n hanmeng"</span><span class="token punctuation">;</span>
+titleView<span class="token punctuation">.</span>textAlignment <span class="token operator">=</span> <span class="token constant">NSTextAlignmentCenter</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">#warning 一定要加这个属性，\n后面的值才会出来，否则出不来
+</span>titleView<span class="token punctuation">.</span>numberOfLines <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token constant">NSString</span> <span class="token operator">*</span>titleStr <span class="token operator">=</span> @<span class="token string">"发布微博\n hanmeng"</span><span class="token punctuation">;</span>
 </code></pre>
 
 <p>第二步，定义一个可变的NSMutableAttributedString，便于添加</p>
@@ -93,18 +92,16 @@ NSMutableAttributedString *attributes = [[NSMutableAttributedString alloc] initW
 </code></pre>第三步，添加属性
 <pre class=" language-ruby"><code class=" language-ruby"><span class="token punctuation">[</span>attributes addAttribute<span class="token symbol">:NSFontAttributeName</span> value<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token constant">UIFont</span> systemFontOfSize<span class="token punctuation">:</span><span class="token number">16</span><span class="token punctuation">]</span> range<span class="token symbol">:NSMakeRange</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-    <span class="token punctuation">[</span>attributes addAttribute<span class="token symbol">:NSFontAttributeName</span> value<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token constant">UIFont</span> systemFontOfSize<span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">]</span> range<span class="token symbol">:NSMakeRange</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> titleStr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>attributes addAttribute<span class="token symbol">:NSFontAttributeName</span> value<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token constant">UIFont</span> systemFontOfSize<span class="token punctuation">:</span><span class="token number">12</span><span class="token punctuation">]</span> range<span class="token symbol">:NSMakeRange</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> titleStr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-    <span class="token punctuation">[</span>attributes addAttribute<span class="token symbol">:NSForegroundColorAttributeName</span> value<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token constant">UIColor</span> orangeColor<span class="token punctuation">]</span> range<span class="token symbol">:NSMakeRange</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> titleStr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span>attributes addAttribute<span class="token symbol">:NSForegroundColorAttributeName</span> value<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token constant">UIColor</span> orangeColor<span class="token punctuation">]</span> range<span class="token symbol">:NSMakeRange</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> titleStr<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre>
 
 <p>第四步，赋值
-</p><pre class=" language-ruby"><code class=" language-ruby">    titleView<span class="token punctuation">.</span>attributedText <span class="token operator">=</span> attributes<span class="token punctuation">;</span>
-
+</p><pre class=" language-ruby"><code class=" language-ruby">titleView<span class="token punctuation">.</span>attributedText <span class="token operator">=</span> attributes<span class="token punctuation">;</span> 
 <span class="token keyword">self</span><span class="token punctuation">.</span>navigationItem<span class="token punctuation">.</span>titleView <span class="token operator">=</span> titleView<span class="token punctuation">;</span>
-
-
-</code><p><code class=" language-ruby"></code></p></pre>最终效果图如下：<p></p>
+</code></pre>最终效果图如下：
+ <img src="http://hanmeng1989.github.io/img/titlexiaoguo.png" alt="" title=""><p></p>
 <!-- content end -->
 </div>
 <br>
