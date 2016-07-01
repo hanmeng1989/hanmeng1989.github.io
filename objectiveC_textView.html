@@ -36,17 +36,16 @@
 <div id="md" style="display: none;">
 <!-- markdown -->
 ##UITextView占位符
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UITextField中有一个属性:placeholder,通过这个属性我们可以很容易的设置它的占位符，并且当你输入文字时，占位符内容会自动消失。而同样为文本输入框的UITextView却没有这个属性，不知道为什么苹果没有将其封装起来。这时候，你就需要手动为它添加placeholder。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UITextField中有一个属性:placeholder,通过这个属性我们可以很容易的设置它的占位符，并且当你输入文字时，占位符内容会自动消失。而同样为文本输入框的UITextView却没有这个属性，不知道为什么苹果没有将其封装起来。这时候，我们就需要手动为它添加placeholder。<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UITextView中添加占位符有两种方式：<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**1. 利用Label来显示占位符** <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**2. 利用重绘机制来显示占位符**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中，利用Label来显示占位符的方法比较简单，这里就不多赘述，读者可以自行研究。今天主要来讲一下如何利用重绘机制来显示占位符。
 
-第一步，自定义HMHolderTextView,继承自UITextView
-设置属性
+第一步，自定义HMHolderTextView,继承自UITextView，并在.h文件中设置属性holderString
 ~~~~{ruby}
 /**
-  *   占位文字
+ *   占位文字
  */
 @property (nonatomic,copy) NSString *holderString;
 ~~~~
@@ -81,7 +80,7 @@
 ~~~~
        
         
-第四步，设置代理，并遵守协议 <UITextViewDelegate>
+第四步，设置代理，并遵守协议`<UITextViewDelegate>`
 ~~~~{ruby}
 self.textView.delegate = self;
 ~~~~
@@ -92,11 +91,11 @@ self.textView.delegate = self;
 - (void)textViewDidChange:(UITextView *)textView{
     if (self.textView.hasText) {
         
-        self.textView.holderString = nil;
+        self.textView.holderString = @"";
         
     }else{
     
-        self.textView.holderString = COMMENTHOLDER;
+        self.textView.holderString = @"请在这里写下您的意见~";
         
     }
     
@@ -105,24 +104,22 @@ self.textView.delegate = self;
 }
 ~~~~
 
-
 <!-- markdown end -->
 </div>
 <div class="entry" id="main">
 <!-- content -->
 <h2 id="uitextview">UITextView占位符</h2>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UITextField中有一个属性:placeholder,通过这个属性我们可以很容易的设置它的占位符，并且当你输入文字时，占位符内容会自动消失。而同样为文本输入框的UITextView却没有这个属性，不知道为什么苹果没有将其封装起来。这时候，你就需要手动为它添加placeholder。<br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UITextField中有一个属性:placeholder,通过这个属性我们可以很容易的设置它的占位符，并且当你输入文字时，占位符内容会自动消失。而同样为文本输入框的UITextView却没有这个属性，不知道为什么苹果没有将其封装起来。这时候，我们就需要手动为它添加placeholder。<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UITextView中添加占位符有两种方式：<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>1. 利用Label来显示占位符</strong> <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>2. 利用重绘机制来显示占位符</strong><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中，利用Label来显示占位符的方法比较简单，这里就不多赘述，读者可以自行研究。今天主要来讲一下如何利用重绘机制来显示占位符。</p>
 
-<p>第一步，自定义HMHolderTextView,继承自UITextView
-设置属性</p>
+<p>第一步，自定义HMHolderTextView,继承自UITextView，并在.h文件中设置属性holderString</p>
 
 <pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
-  <span class="token operator">*</span>   占位文字
+ <span class="token operator">*</span>   占位文字
  <span class="token operator">*</span><span class="token operator">/</span>
 <span class="token variable">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span>copy<span class="token punctuation">)</span> <span class="token constant">NSString</span> <span class="token operator">*</span>holderString<span class="token punctuation">;</span>
 </code></pre>
@@ -153,7 +150,7 @@ self.textView.delegate = self;
         <span class="token keyword">self</span><span class="token punctuation">.</span>textView <span class="token operator">=</span> textView<span class="token punctuation">;</span>
 </code></pre>       
 
-<p>第四步，设置代理，并遵守协议 <uitextviewdelegate></uitextviewdelegate></p>
+<p>第四步，设置代理，并遵守协议<code>&lt;UITextViewDelegate&gt;</code></p>
 
 <pre class=" language-ruby"><code class=" language-ruby"><span class="token keyword">self</span><span class="token punctuation">.</span>textView<span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">;</span>
 </code></pre>       
@@ -164,11 +161,11 @@ self.textView.delegate = self;
 </span><span class="token operator">-</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span>textViewDidChange<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">UITextView</span> <span class="token operator">*</span><span class="token punctuation">)</span>textView<span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>textView<span class="token punctuation">.</span>hasText<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
-        <span class="token keyword">self</span><span class="token punctuation">.</span>textView<span class="token punctuation">.</span>holderString <span class="token operator">=</span> <span class="token keyword">nil</span><span class="token punctuation">;</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>textView<span class="token punctuation">.</span>holderString <span class="token operator">=</span> @<span class="token string">""</span><span class="token punctuation">;</span>
 
     <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
 
-        <span class="token keyword">self</span><span class="token punctuation">.</span>textView<span class="token punctuation">.</span>holderString <span class="token operator">=</span> <span class="token constant">COMMENTHOLDER</span><span class="token punctuation">;</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>textView<span class="token punctuation">.</span>holderString <span class="token operator">=</span> @<span class="token string">"请在这里写下您的意见~"</span><span class="token punctuation">;</span>
 
     <span class="token punctuation">}</span>
 
