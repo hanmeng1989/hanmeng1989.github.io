@@ -61,6 +61,16 @@
 }
 ~~~~
 
+<p style="color:red">注意：控制器销毁时要将通知移除，此项非常容易遗忘</p>
+~~~~{ruby}
+/**
+ *  控制器销毁时从通知中心移除监听
+ */
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+~~~~
+
 <!-- markdown end -->
 </div>
 <div class="entry" id="main">
@@ -86,6 +96,16 @@
     <span class="token operator">/</span><span class="token operator">/</span>计算view垂直方向移动的距离
     <span class="token constant">CGFloat</span> transformY <span class="token operator">=</span> kbFrame<span class="token punctuation">.</span>origin<span class="token punctuation">.</span>y <span class="token operator">-</span> <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>frame<span class="token punctuation">.</span>size<span class="token punctuation">.</span>height<span class="token punctuation">;</span>
     <span class="token keyword">self</span><span class="token punctuation">.</span>view<span class="token punctuation">.</span>transform <span class="token operator">=</span> <span class="token function">CGAffineTransformMakeTranslation<span class="token punctuation">(</span></span><span class="token number">0</span><span class="token punctuation">,</span> transformY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+<p style="color:red">注意：控制器销毁时要将通知移除，此项非常容易遗忘</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">*</span><span class="token operator">*</span>
+ <span class="token operator">*</span>  控制器销毁时从通知中心移除监听
+ <span class="token operator">*</span><span class="token operator">/</span>
+<span class="token operator">-</span><span class="token punctuation">(</span>void<span class="token punctuation">)</span>dealloc<span class="token punctuation">{</span>
+    <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">NSNotificationCenter</span> defaultCenter<span class="token punctuation">]</span> removeObserver<span class="token symbol">:self</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <!-- content end -->
