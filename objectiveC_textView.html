@@ -65,18 +65,18 @@
 第三步，创建textView,并设置占位文字
 
 ~~~~{ruby}
-       HMHolderTextView *textView = [[HMHolderTextView alloc] init];
+HMHolderTextView *textView = [[HMHolderTextView alloc] init];
 
-        textView.layer.borderColor = UIColor.grayColor.CGColor;
-        textView.layer.borderWidth = 1;
-        textView.layer.cornerRadius = 6;
-        textView.layer.masksToBounds = YES;
+textView.layer.borderColor = UIColor.grayColor.CGColor;
+textView.layer.borderWidth = 1;
+textView.layer.cornerRadius = 6;
+textView.layer.masksToBounds = YES;
        
-        // 评论框中的占位文字
-        textView.holderString = @"请在这里写下您的意见~";
+// 评论框中的占位文字
+textView.holderString = @"请在这里写下您的意见~";
 
-        // 为便于后面使用，设置一个属性来接收
-        self.textView = textView;
+// 为便于后面使用，设置一个属性来接收
+self.textView = textView;
 ~~~~
        
         
@@ -138,18 +138,18 @@ self.textView.delegate = self;
 
 <p>第三步，创建textView,并设置占位文字</p>
 
-<pre class=" language-ruby"><code class=" language-ruby">       <span class="token constant">HMHolderTextView</span> <span class="token operator">*</span>textView <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">HMHolderTextView</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token constant">HMHolderTextView</span> <span class="token operator">*</span>textView <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">HMHolderTextView</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-        textView<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>borderColor <span class="token operator">=</span> <span class="token constant">UIColor</span><span class="token punctuation">.</span>grayColor<span class="token punctuation">.</span><span class="token constant">CGColor</span><span class="token punctuation">;</span>
-        textView<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>borderWidth <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        textView<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>cornerRadius <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span>
-        textView<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>masksToBounds <span class="token operator">=</span> <span class="token constant">YES</span><span class="token punctuation">;</span>
+textView<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>borderColor <span class="token operator">=</span> <span class="token constant">UIColor</span><span class="token punctuation">.</span>grayColor<span class="token punctuation">.</span><span class="token constant">CGColor</span><span class="token punctuation">;</span>
+textView<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>borderWidth <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+textView<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>cornerRadius <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span>
+textView<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>masksToBounds <span class="token operator">=</span> <span class="token constant">YES</span><span class="token punctuation">;</span>
 
-        <span class="token operator">/</span><span class="token operator">/</span> 评论框中的占位文字
-        textView<span class="token punctuation">.</span>holderString <span class="token operator">=</span> @<span class="token string">"请在这里写下您的意见~"</span><span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> 评论框中的占位文字
+textView<span class="token punctuation">.</span>holderString <span class="token operator">=</span> @<span class="token string">"请在这里写下您的意见~"</span><span class="token punctuation">;</span>
 
-        <span class="token operator">/</span><span class="token operator">/</span> 为便于后面使用，设置一个属性来接收
-        <span class="token keyword">self</span><span class="token punctuation">.</span>textView <span class="token operator">=</span> textView<span class="token punctuation">;</span>
+<span class="token operator">/</span><span class="token operator">/</span> 为便于后面使用，设置一个属性来接收
+<span class="token keyword">self</span><span class="token punctuation">.</span>textView <span class="token operator">=</span> textView<span class="token punctuation">;</span>
 </code></pre>       
 
 <p>第四步，设置代理，并遵守协议<code>&lt;UITextViewDelegate&gt;</code></p>
