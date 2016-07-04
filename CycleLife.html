@@ -35,7 +35,7 @@
 	</div>
 <div id="md" style="display: none;">
 <!-- markdown -->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序如下：<br>
+当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序如下：<br>
 1.   alloc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;创建对象，分配空间<br>
 2.  init  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;      初始化对象，初始化数据<br>
 3.  loadView                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  从nib载入视图 ，通常这一步不需要去干涉。除非你没有使用xib文件创建视图<br>
@@ -43,23 +43,23 @@
 5. viewWillAppear              视图将出现在屏幕之前，马上这个视图就会被展现在屏幕上了<br>
 6. viewDidAppear               视图已在屏幕上渲染完成<br>
 
- &nbsp;&nbsp; &nbsp;&nbsp;  当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反<br>
+当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反<br>
 7. viewWillDisappear            视图将被从屏幕上移除之前执行<br>
 8. viewDidDisappear             视图已经被从屏幕上移除，用户看不到这个视图了<br>
 9. dealloc                                 视图被销毁，此处需要对你在init和viewDidLoad中创建的对象进行释放<br>
 
- &nbsp;&nbsp; &nbsp;&nbsp;关于viewDidUnload ：在发生内存警告的时候如果本视图不是当前屏幕上正在显示的视图的话， viewDidUnload将会被执行，本视图的所有子视图将被销毁，以释放内存,此时开发者需要手动对viewLoad、viewDidLoad中创建的对象释放内存。 因为当这个视图再次显示在屏幕上的时候，viewLoad、viewDidLoad 再次被调用，以便再次构造视图。
+关于viewDidUnload ：在发生内存警告的时候如果本视图不是当前屏幕上正在显示的视图的话， viewDidUnload将会被执行，本视图的所有子视图将被销毁，以释放内存,此时开发者需要手动对viewLoad、viewDidLoad中创建的对象释放内存。 因为当这个视图再次显示在屏幕上的时候，viewLoad、viewDidLoad 再次被调用，以便再次构造视图。
 
-&nbsp;&nbsp; &nbsp;&nbsp;下图为控制器生命周期的过程，掌握住这幅图，控制器的生命周期这一问题将再也不会困扰大家了。
-<span class="loading">upload image now!</span>
-<p style="font:12px,color:gray,alignment:center">图.控制器的生命周期</p>
+下图为控制器生命周期的过程，掌握住这幅图，控制器的生命周期这一问题将再也不会困扰大家了。
+ ![](http://hanmeng1989.github.io/img/ViewCtr-Life.png)
+<p style="font-size:12px;color:gray;text-align:center">图. 控制器的生命周期</p>
 其中，红色区域为我们经常写代码的区域，要特别关注。
 
 <!-- markdown end -->
 </div>
 <div class="entry" id="main">
 <!-- content -->
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序如下：<br>
+<p>当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序如下：<br>
 1.   alloc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;创建对象，分配空间<br>
 2.  init  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;      初始化对象，初始化数据<br>
 3.  loadView                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  从nib载入视图 ，通常这一步不需要去干涉。除非你没有使用xib文件创建视图<br>
@@ -67,17 +67,17 @@
 5. viewWillAppear              视图将出现在屏幕之前，马上这个视图就会被展现在屏幕上了<br>
 6. viewDidAppear               视图已在屏幕上渲染完成<br></p>
 
-<p>&nbsp;&nbsp; &nbsp;&nbsp;  当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反<br>
+<p>当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反<br>
 7. viewWillDisappear            视图将被从屏幕上移除之前执行<br>
 8. viewDidDisappear             视图已经被从屏幕上移除，用户看不到这个视图了<br>
 9. dealloc                                 视图被销毁，此处需要对你在init和viewDidLoad中创建的对象进行释放<br></p>
 
-<p>&nbsp;&nbsp; &nbsp;&nbsp;关于viewDidUnload ：在发生内存警告的时候如果本视图不是当前屏幕上正在显示的视图的话， viewDidUnload将会被执行，本视图的所有子视图将被销毁，以释放内存,此时开发者需要手动对viewLoad、viewDidLoad中创建的对象释放内存。 因为当这个视图再次显示在屏幕上的时候，viewLoad、viewDidLoad 再次被调用，以便再次构造视图。</p>
+<p>关于viewDidUnload ：在发生内存警告的时候如果本视图不是当前屏幕上正在显示的视图的话， viewDidUnload将会被执行，本视图的所有子视图将被销毁，以释放内存,此时开发者需要手动对viewLoad、viewDidLoad中创建的对象释放内存。 因为当这个视图再次显示在屏幕上的时候，viewLoad、viewDidLoad 再次被调用，以便再次构造视图。</p>
 
-<p>&nbsp;&nbsp; &nbsp;&nbsp;下图为控制器生命周期的过程，掌握住这幅图，控制器的生命周期这一问题将再也不会困扰大家了。
-<span class="loading">upload image now!</span></p>
+<p>下图为控制器生命周期的过程，掌握住这幅图，控制器的生命周期这一问题将再也不会困扰大家了。
+ <img src="http://hanmeng1989.github.io/img/ViewCtr-Life.png" alt="" title=""></p>
 
-<p style="font:12px,color:gray,alignment:center">图.控制器的生命周期</p>
+<p style="font-size:12px;color:gray;text-align:center">图. 控制器的生命周期</p>
 
 <p>其中，红色区域为我们经常写代码的区域，要特别关注。</p>
 <!-- content end -->
