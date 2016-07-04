@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序如下：<br>
+1.   alloc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;创建对象，分配空间<br>
+2.  init  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;      初始化对象，初始化数据<br>
+3.  loadView                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  从nib载入视图 ，通常这一步不需要去干涉。除非你没有使用xib文件创建视图<br>
+4.  viewDidLoad                &nbsp;&nbsp;   载入完成，可以进行自定义数据以及动态创建其他控件<br>
+5. viewWillAppear              视图将出现在屏幕之前，马上这个视图就会被展现在屏幕上了<br>
+6. viewDidAppear               视图已在屏幕上渲染完成<br>
+
+ &nbsp;&nbsp; &nbsp;&nbsp;  当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反<br>
+7. viewWillDisappear            视图将被从屏幕上移除之前执行<br>
+8. viewDidDisappear             视图已经被从屏幕上移除，用户看不到这个视图了<br>
+9. dealloc                                 视图被销毁，此处需要对你在init和viewDidLoad中创建的对象进行释放<br>
+
+ &nbsp;&nbsp; &nbsp;&nbsp;关于viewDidUnload ：在发生内存警告的时候如果本视图不是当前屏幕上正在显示的视图的话， viewDidUnload将会被执行，本视图的所有子视图将被销毁，以释放内存,此时开发者需要手动对viewLoad、viewDidLoad中创建的对象释放内存。 因为当这个视图再次显示在屏幕上的时候，viewLoad、viewDidLoad 再次被调用，以便再次构造视图。
+
+&nbsp;&nbsp; &nbsp;&nbsp;下图为控制器生命周期的过程，掌握住这幅图，控制器的生命周期这一问题将再也不会困扰大家了。
+<span class="loading">upload image now!</span>
+<p style="font:12px,color:gray,alignment:center">图.控制器的生命周期</p>
+其中，红色区域为我们经常写代码的区域，要特别关注。
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序如下：<br>
+1.   alloc &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;创建对象，分配空间<br>
+2.  init  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;      初始化对象，初始化数据<br>
+3.  loadView                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  从nib载入视图 ，通常这一步不需要去干涉。除非你没有使用xib文件创建视图<br>
+4.  viewDidLoad                &nbsp;&nbsp;   载入完成，可以进行自定义数据以及动态创建其他控件<br>
+5. viewWillAppear              视图将出现在屏幕之前，马上这个视图就会被展现在屏幕上了<br>
+6. viewDidAppear               视图已在屏幕上渲染完成<br></p>
+
+<p>&nbsp;&nbsp; &nbsp;&nbsp;  当一个视图被移除屏幕并且销毁的时候的执行顺序，这个顺序差不多和上面的相反<br>
+7. viewWillDisappear            视图将被从屏幕上移除之前执行<br>
+8. viewDidDisappear             视图已经被从屏幕上移除，用户看不到这个视图了<br>
+9. dealloc                                 视图被销毁，此处需要对你在init和viewDidLoad中创建的对象进行释放<br></p>
+
+<p>&nbsp;&nbsp; &nbsp;&nbsp;关于viewDidUnload ：在发生内存警告的时候如果本视图不是当前屏幕上正在显示的视图的话， viewDidUnload将会被执行，本视图的所有子视图将被销毁，以释放内存,此时开发者需要手动对viewLoad、viewDidLoad中创建的对象释放内存。 因为当这个视图再次显示在屏幕上的时候，viewLoad、viewDidLoad 再次被调用，以便再次构造视图。</p>
+
+<p>&nbsp;&nbsp; &nbsp;&nbsp;下图为控制器生命周期的过程，掌握住这幅图，控制器的生命周期这一问题将再也不会困扰大家了。
+<span class="loading">upload image now!</span></p>
+
+<p style="font:12px,color:gray,alignment:center">图.控制器的生命周期</p>
+
+<p>其中，红色区域为我们经常写代码的区域，要特别关注。</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "CycleLife.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
