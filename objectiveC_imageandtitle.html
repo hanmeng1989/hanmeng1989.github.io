@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##图文混排
+
+显示文字：UILabel/UIButton            <br>
+显示图片：UIImageView和UIButton <br>
+显示图文混排：UILabel、UITextView、UITextField <br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图文混排技术的实现，主要通过修改控件的`attributedText`属性来实现。本文以UILabel为例介绍如何利用UILabel来展示图文混排。<br>
+最终效果图：<br>
+ ![](http://hanmeng1989.github.io/img/4e934288-8197-41fe-8283-597a3b4f2ec2.png)
+
+**第一步：**创建Label并添加到View
+~~~~{ruby}
+// 1.创建Label
+UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    
+[self.view addSubview:label];
+~~~~
+
+**第二步：** 图文混排<br>
+ 2.1 初始化attribute,并添加文字 “I ”
+~~~~{ruby}
+ // 2.1 初始化attribute,并添加文字 “I ”
+ NSMutableAttributedString *mutableAttribute = [[NSMutableAttributedString alloc] init];
+    
+ [mutableAttribute setAttributedString:[[NSAttributedString alloc] initWithString:@"I "]];
+~~~~
+
+2.2 添加图片
+~~~~{ruby}
+ // 2.2 添加图片
+ NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+    
+ attachment.image = [UIImage imageNamed:@"d_aini"];
+    
+ NSAttributedString *attri = [NSAttributedString attributedStringWithAttachment:attachment];
+    
+ [mutableAttribute appendAttributedString:attri];
+~~~~
+
+2.3 添加另外一部分文字 @" You"
+~~~~{ruby}
+// 2.3 添加另外一部分文字 @" You"
+ [mutableAttribute appendAttributedString:[[NSAttributedString alloc] initWithString:@" You"]];
+~~~~
+
+第三步：赋值给label的attributedText
+~~~~{ruby}
+label.attributedText = mutableAttribute;
+~~~~
+
+最近在学Swift，所以用Swift语言又实现了一下，代码如下：
+~~~~{ruby}
+// 1.lbl
+ let lbl = UILabel(frame: CGRectMake(100, 100, 100, 100))
+        
+ view.addSubview(lbl)
+        
+ // 2.图片
+        
+ // 2.1 文字
+ let mulAttribute = NSMutableAttributedString()
+        
+ mulAttribute.setAttributedString(NSAttributedString(string:"I "))
+        
+ // 2.2 图片
+ let attachment = NSTextAttachment()
+        
+ attachment.image = UIImage(named: "d_aini")
+        
+ let attribute = NSAttributedString(attachment: attachment)
+        
+ mulAttribute.appendAttributedString(attribute)
+        
+ // 2.3 文字
+ mulAttribute.appendAttributedString(NSAttributedString(string: " You"))
+     
+ // 3.赋值给label的attributedText
+ lbl.attributedText = mulAttribute
+~~~~
+    
+
+   
+    
+   
+    
+  
+    
+   
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="">图文混排</h2>
+
+<p>显示文字：UILabel/UIButton            <br>
+显示图片：UIImageView和UIButton <br>
+显示图文混排：UILabel、UITextView、UITextField <br></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图文混排技术的实现，主要通过修改控件的<code>attributedText</code>属性来实现。本文以UILabel为例介绍如何利用UILabel来展示图文混排。<br>
+最终效果图：<br>
+ <img src="http://hanmeng1989.github.io/img/4e934288-8197-41fe-8283-597a3b4f2ec2.png" alt="" title=""></p>
+
+<p><strong>第一步：</strong>创建Label并添加到View</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> <span class="token number">1</span><span class="token punctuation">.</span>创建<span class="token constant">Label</span>
+<span class="token constant">UILabel</span> <span class="token operator">*</span>label <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">UILabel</span> alloc<span class="token punctuation">]</span> initWithFrame<span class="token symbol">:CGRectMake</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">.</span>view addSubview<span class="token symbol">:label</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p><strong>第二步：</strong> 图文混排<br>
+ 2.1 初始化attribute,并添加文字 “I ”</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"> <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">2.1</span> 初始化attribute<span class="token punctuation">,</span>并添加文字 “<span class="token constant">I</span> ”
+ <span class="token constant">NSMutableAttributedString</span> <span class="token operator">*</span>mutableAttribute <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">NSMutableAttributedString</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+ <span class="token punctuation">[</span>mutableAttribute setAttributedString<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">NSAttributedString</span> alloc<span class="token punctuation">]</span> initWithString<span class="token punctuation">:</span>@<span class="token string">"I "</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>2.2 添加图片</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"> <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">2.2</span> 添加图片
+ <span class="token constant">NSTextAttachment</span> <span class="token operator">*</span>attachment <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">NSTextAttachment</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+ attachment<span class="token punctuation">.</span>image <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">UIImage</span> imageNamed<span class="token punctuation">:</span>@<span class="token string">"d_aini"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+ <span class="token constant">NSAttributedString</span> <span class="token operator">*</span>attri <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">NSAttributedString</span> attributedStringWithAttachment<span class="token symbol">:attachment</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+ <span class="token punctuation">[</span>mutableAttribute appendAttributedString<span class="token symbol">:attri</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>2.3 添加另外一部分文字 @" You"</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> <span class="token number">2.3</span> 添加另外一部分文字 @<span class="token string">" You"</span>
+ <span class="token punctuation">[</span>mutableAttribute appendAttributedString<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">NSAttributedString</span> alloc<span class="token punctuation">]</span> initWithString<span class="token punctuation">:</span>@<span class="token string">" You"</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>第三步：赋值给label的attributedText</p>
+
+<pre class=" language-ruby"><code class=" language-ruby">label<span class="token punctuation">.</span>attributedText <span class="token operator">=</span> mutableAttribute<span class="token punctuation">;</span>
+</code></pre>
+
+<p>最近在学Swift，所以用Swift语言又实现了一下，代码如下：</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> <span class="token number">1</span><span class="token punctuation">.</span>lbl
+ let lbl <span class="token operator">=</span> <span class="token function">UILabel<span class="token punctuation">(</span></span>frame<span class="token punctuation">:</span> <span class="token function">CGRectMake<span class="token punctuation">(</span></span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+ view<span class="token punctuation">.</span><span class="token function">addSubview<span class="token punctuation">(</span></span>lbl<span class="token punctuation">)</span>
+
+ <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">.</span>图片
+
+ <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">2.1</span> 文字
+ let mulAttribute <span class="token operator">=</span> <span class="token function">NSMutableAttributedString<span class="token punctuation">(</span></span><span class="token punctuation">)</span>
+
+ mulAttribute<span class="token punctuation">.</span><span class="token function">setAttributedString<span class="token punctuation">(</span></span><span class="token function">NSAttributedString<span class="token punctuation">(</span></span>string<span class="token punctuation">:</span><span class="token string">"I "</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+ <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">2.2</span> 图片
+ let attachment <span class="token operator">=</span> <span class="token function">NSTextAttachment<span class="token punctuation">(</span></span><span class="token punctuation">)</span>
+
+ attachment<span class="token punctuation">.</span>image <span class="token operator">=</span> <span class="token function">UIImage<span class="token punctuation">(</span></span>named<span class="token punctuation">:</span> <span class="token string">"d_aini"</span><span class="token punctuation">)</span>
+
+ let attribute <span class="token operator">=</span> <span class="token function">NSAttributedString<span class="token punctuation">(</span></span>attachment<span class="token punctuation">:</span> attachment<span class="token punctuation">)</span>
+
+ mulAttribute<span class="token punctuation">.</span><span class="token function">appendAttributedString<span class="token punctuation">(</span></span>attribute<span class="token punctuation">)</span>
+
+ <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">2.3</span> 文字
+ mulAttribute<span class="token punctuation">.</span><span class="token function">appendAttributedString<span class="token punctuation">(</span></span><span class="token function">NSAttributedString<span class="token punctuation">(</span></span>string<span class="token punctuation">:</span> <span class="token string">" You"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+ <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">.</span>赋值给label的attributedText
+ lbl<span class="token punctuation">.</span>attributedText <span class="token operator">=</span> mulAttribute
+</code></pre>    
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "objectiveC_imageandtitle.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
