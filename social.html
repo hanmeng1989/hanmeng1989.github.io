@@ -36,6 +36,7 @@
 <div id="md" style="display: none;">
 <!-- markdown -->
 ##社交分享
+###**一、社交分享简介**
 目前大多数App中都具有“社交分享”的功能，而社交分享的作用是什么呢？<br>
 1. 通过用户的分享，让更多的人去了解和使用这个App<br>
 2. 目前移动互联网应用程序推广的最重要手段之一<br>
@@ -50,6 +51,7 @@
 *  QQ空间
 * 人人网
 
+###**二、iOS中如何实现社交分享**
 那么，该如何实现社交分享呢？在iOS中，实现“社交分享”的方法主要有三种：
 
 1. 自己编写各个 平台的分享代码（代码量较多，不可行）
@@ -62,13 +64,16 @@
 </ul>
 其中，用的比较多的还是`友盟分享`，ShareSDK与百度社会化分享组件目前均处于半死不活状态。
 
+###**三、Social.framework使用步骤:**<br>
 今天，我们主要来看一下iOS中自带的`Social.framework`的使用步骤。
 
 Social.framework支持的分享平台（打开手机上的“设置”即可看到）
 
  ![](http://hanmeng1989.github.io/img/pic1.png)
+<p style="font-size:12px;" align=center>图1.Social.framework支持的分享平台 </p>
 
-**Social.framework使用步骤:**<br>
+
+使用步骤如下所示：<br>
 1.导入头文件
 ~~~~{ruby}
 #import <Social/Social.h>
@@ -104,6 +109,7 @@ SLComposeViewController *composeVc = [SLComposeViewController composeViewControl
 **分享界面弹出效果**
 
  ![](http://hanmeng1989.github.io/img/QQ20160710-0@2x.png)
+<p style="font-size:12px;" align=center>图2.分享界面弹出效果</p>
 
 
 
@@ -113,6 +119,8 @@ SLComposeViewController *composeVc = [SLComposeViewController composeViewControl
 <div class="entry" id="main">
 <!-- content -->
 <h2 id="">社交分享</h2>
+
+<h3 id=""><strong>一、社交分享简介</strong></h3>
 
 <p>目前大多数App中都具有“社交分享”的功能，而社交分享的作用是什么呢？<br>
 1. 通过用户的分享，让更多的人去了解和使用这个App<br>
@@ -130,6 +138,8 @@ SLComposeViewController *composeVc = [SLComposeViewController composeViewControl
 <li>人人网</li>
 </ul>
 
+<h3 id="ios"><strong>二、iOS中如何实现社交分享</strong></h3>
+
 <p>那么，该如何实现社交分享呢？在iOS中，实现“社交分享”的方法主要有三种：</p>
 
 <ol>
@@ -146,13 +156,17 @@ SLComposeViewController *composeVc = [SLComposeViewController composeViewControl
 
 <p>其中，用的比较多的还是<code>友盟分享</code>，ShareSDK与百度社会化分享组件目前均处于半死不活状态。</p>
 
+<h3 id="socialframeworkbr"><strong>三、Social.framework使用步骤:</strong><br></h3>
+
 <p>今天，我们主要来看一下iOS中自带的<code>Social.framework</code>的使用步骤。</p>
 
 <p>Social.framework支持的分享平台（打开手机上的“设置”即可看到）</p>
 
 <p><img src="http://hanmeng1989.github.io/img/pic1.png" alt="" title=""></p>
 
-<p><strong>Social.framework使用步骤:</strong><br>
+<p style="font-size:12px;" align="center">图1.Social.framework支持的分享平台 </p>
+
+<p>使用步骤如下所示：<br>
 1.导入头文件</p>
 
 <pre class=" language-ruby"><code class=" language-ruby"><span class="token comment" spellcheck="true">#import &lt;Social/Social.h&gt;
@@ -184,6 +198,8 @@ SLComposeViewController *composeVc = [SLComposeViewController composeViewControl
 <p><strong>分享界面弹出效果</strong></p>
 
 <p><img src="http://hanmeng1989.github.io/img/QQ20160710-0@2x.png" alt="" title=""></p>
+
+<p style="font-size:12px;" align="center">图2.分享界面弹出效果</p>
 <!-- content end -->
 </div>
 <br>
