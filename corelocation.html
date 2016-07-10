@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##一次定位
+在移动互联网时代，移动app能解决用户的很多生活琐事，比如：<br>
+
+* 导航：去任意陌生的地方 
+* 周边：找餐馆、找酒店、找银行、找电影院
+
+
+在上述应用中，都用到了地图和定位功能，在iOS开发中，要想加入这2大功能，必须基于2个框架进行开发<br>
+1. **Map Kit ：**用于地图展示 <br>
+2. **Core Location ：**用于地理定位
+
+本篇文章主要介绍如何通过Core Location进行定位。
+步骤如下：<br>
+1. 导入CoreLocation框架
+~~~~{ruby}
+#import <CoreLocation/CoreLocation.h>
+~~~~
+2. 创建位置管理者
+~~~~{ruby}
+// 注：必须创建强引用CLLocationManager，否则用户授权弹窗不会显示
+@property (nonatomic,strong) CLLocationManager *locationManager;
+~~~~
+
+~~~~{ruby}
+// 创建位置管理者
+CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+
+// 代理设置    
+locationManager.delegate = self;
+    
+// 解决弹窗一闪而过的问题
+self.locationManager = locationManager;
+~~~~
+
+3.请求用户授权
+
+在*iOS8*之后，苹果开始强制开发者在请求定位服务时获得用户的授权，此外iOS状态栏中还有指示图标，提示用户当前应用是否正在使用定位服务。另外在iOS8中，苹果进一步改善了定位服务，让开发者请求定位服务时需要向用户提供更多的透明。
+~~~~{ruby}
+// 请求用户授权 
+ if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0){
+     
+      // 始终请求授权，无论app在前台或者后台都可以使用定位功能（如导航功能）
+      [locationManager requestAlwaysAuthorization];
+      // 当使用app期间授权 app在前台运行时，才可以使用定位功能
+      [locationManager requestWhenInUseAuthorization];
+    }
+~~~~
+ 
+在Info.plist文件中添加如下配置：
+
+**（1）NSLocationAlwaysUsageDescription**
+
+**（2）NSLocationWhenInUseUsageDescription**
+
+// 注： 只需要添加一个即可，string必须写明白否则会上架被拒
+
+![](https://hanmeng1989.github.io/img/ios8_location_info_plist.png)
+<p style="font-size:12px" align = center>图. info.plist配置文件</p>
+4.开始定位
+~~~~{ruby}
+ // 开始定位
+
+ [locationManager startUpdatingLocation];
+~~~~
+
+5.实现代理方法
+~~~~{ruby}
+// 当确定用户位置时调用，调用特别的频繁，-->耗电
+
+// locations数组：包含用户当前位置
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    // 停止定位
+    [manager stopUpdatingLocation];
+    
+    NSLog(@"%@",locations);
+}
+~~~~
+
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="">一次定位</h2>
+
+<p>在移动互联网时代，移动app能解决用户的很多生活琐事，比如：<br></p>
+
+<ul>
+<li>导航：去任意陌生的地方 </li>
+<li>周边：找餐馆、找酒店、找银行、找电影院</li>
+</ul>
+
+<p>在上述应用中，都用到了地图和定位功能，在iOS开发中，要想加入这2大功能，必须基于2个框架进行开发<br>
+1. <strong>Map Kit ：</strong>用于地图展示 <br>
+2. <strong>Core Location ：</strong>用于地理定位</p>
+
+<p>本篇文章主要介绍如何通过Core Location进行定位。
+步骤如下：<br>
+1. 导入CoreLocation框架</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token comment" spellcheck="true">#import &lt;CoreLocation/CoreLocation.h&gt;
+</span></code></pre>2. 创建位置管理者
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 注：必须创建强引用<span class="token constant">CLLocationManager</span>，否则用户授权弹窗不会显示
+<span class="token variable">@property</span> <span class="token punctuation">(</span>nonatomic<span class="token punctuation">,</span>strong<span class="token punctuation">)</span> <span class="token constant">CLLocationManager</span> <span class="token operator">*</span>locationManager<span class="token punctuation">;</span>
+</code></pre>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 创建位置管理者
+<span class="token constant">CLLocationManager</span> <span class="token operator">*</span>locationManager <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">CLLocationManager</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token operator">/</span><span class="token operator">/</span> 代理设置    
+locationManager<span class="token punctuation">.</span>delegate <span class="token operator">=</span> <span class="token keyword">self</span><span class="token punctuation">;</span>
+
+<span class="token operator">/</span><span class="token operator">/</span> 解决弹窗一闪而过的问题
+<span class="token keyword">self</span><span class="token punctuation">.</span>locationManager <span class="token operator">=</span> locationManager<span class="token punctuation">;</span>
+</code></pre>
+
+<p>3.请求用户授权</p>
+
+<p>在<em>iOS8</em>之后，苹果开始强制开发者在请求定位服务时获得用户的授权，此外iOS状态栏中还有指示图标，提示用户当前应用是否正在使用定位服务。另外在iOS8中，苹果进一步改善了定位服务，让开发者请求定位服务时需要向用户提供更多的透明。</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 请求用户授权 
+ <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token constant">UIDevice</span> currentDevice<span class="token punctuation">]</span><span class="token punctuation">.</span>systemVersion<span class="token punctuation">.</span>floatValue <span class="token operator">&gt;=</span> <span class="token number">8.0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+      <span class="token operator">/</span><span class="token operator">/</span> 始终请求授权，无论app在前台或者后台都可以使用定位功能（如导航功能）
+      <span class="token punctuation">[</span>locationManager requestAlwaysAuthorization<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token operator">/</span><span class="token operator">/</span> 当使用app期间授权 app在前台运行时，才可以使用定位功能
+      <span class="token punctuation">[</span>locationManager requestWhenInUseAuthorization<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre> 
+
+<p>在Info.plist文件中添加如下配置：</p>
+
+<p><strong>（1）NSLocationAlwaysUsageDescription</strong></p>
+
+<p><strong>（2）NSLocationWhenInUseUsageDescription</strong></p>
+
+<p>// 注： 只需要添加一个即可，string必须写明白否则会上架被拒</p>
+
+<p><img src="https://hanmeng1989.github.io/img/ios8_location_info_plist.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图. info.plist配置文件</p>
+
+<p>4.开始定位</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"> <span class="token operator">/</span><span class="token operator">/</span> 开始定位
+
+ <span class="token punctuation">[</span>locationManager startUpdatingLocation<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p>5.实现代理方法</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 当确定用户位置时调用，调用特别的频繁，<span class="token operator">--</span><span class="token operator">&gt;</span>耗电
+
+<span class="token operator">/</span><span class="token operator">/</span> locations数组：包含用户当前位置
+<span class="token operator">-</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span>locationManager<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">CLLocationManager</span> <span class="token operator">*</span><span class="token punctuation">)</span>manager didUpdateLocations<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">NSArray</span><span class="token operator">&lt;</span><span class="token constant">CLLocation</span> <span class="token operator">*</span><span class="token operator">&gt;</span> <span class="token operator">*</span><span class="token punctuation">)</span>locations<span class="token punctuation">{</span>
+
+    <span class="token operator">/</span><span class="token operator">/</span> 停止定位
+    <span class="token punctuation">[</span>manager stopUpdatingLocation<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token function">NSLog<span class="token punctuation">(</span></span>@<span class="token string">"%@"</span><span class="token punctuation">,</span>locations<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "corelocation.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
