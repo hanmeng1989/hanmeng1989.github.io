@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##一、概述
+
+使用`CLGeocoder`可以完成“地理编码”和“反地理编码”
+
+* 地理编码：根据给定的地名，获得具体的位置信息（比如经纬度、地址的全称等）
+* 反地理编码：根据给定的经纬度，获得具体的位置信息
+##二、地理编码
+1.准备工作：界面搭建<br>
+用storyboard搭建界面，将界面中的控件拖线到@interface
+
+~~~~{ruby}
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+
+@property (weak, nonatomic) IBOutlet UILabel *longitude;
+
+@property (weak, nonatomic) IBOutlet UILabel *latitude;
+
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+~~~~
+
+2.创建地理编码对象
+
+~~~~{ruby}
+// 创建地理编码对象
+CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
+~~~~
+3.地理编码
+~~~~{ruby}
+// 地理编码
+// AddressString需要地理编码的地址
+[geoCoder geocodeAddressString:self.addressTextField.text completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@",error);
+            return;
+        }
+        
+        // 实际开发中，通知是给一个列表，让用户自己去选择
+        for (CLPlacemark *placemark in placemarks) {
+            
+            NSLog(@"%@",placemark.locality);
+        }
+        
+        CLPlacemark *placeMark = placemarks.lastObject;
+        
+        // 经度
+        self.longitude.text = [NSString stringWithFormat:@"%f",placeMark.location.coordinate.longitude];
+        
+        // 纬度
+        self.latitude.text = [NSString stringWithFormat:@"%f",placeMark.location.coordinate.latitude];
+        
+        // 具体位置
+        self.detailLabel.text = placeMark.name;
+    }];
+~~~~
+
+
+**效果图：**
+![](https://hanmeng1989.github.io/img/QQ20160711-0@2x.png)
+<p style="font-size:12px" align = center>反地理编码效果图</p>
+##三、反地理编码
+1.准备工作：界面搭建
+用storyboard搭建界面，将界面中的控件拖线到@interface
+~~~~{ruby}
+@property (weak, nonatomic) IBOutlet UITextField *longitude;
+
+@property (weak, nonatomic) IBOutlet UITextField *latitude;
+
+@property (weak, nonatomic) IBOutlet UILabel *addressLbl;
+~~~~
+
+2.创建地理编码
+~~~~{ruby}
+// 创建地理编码
+CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+~~~~
+3.反地理编码
+~~~~{ruby}
+// 反地理编码
+CLLocation *location = [[CLLocation alloc] initWithLatitude:self.latitude.text.doubleValue longitude:self.longitude.text.doubleValue];
+    
+[geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        // 防错处理
+        if (error) {
+            NSLog(@"%@",error);
+            return ;
+        }
+        
+        self.addressLbl.text = placemarks.firstObject.name;
+    }];
+~~~~
+
+**效果图**
+  ![](https://hanmeng1989.github.io/img/QQ20160711-1@2x.png)
+<p style="font-size:12px" align = center>反地理编码效果图</p>
+##四：CLPlacemark
+CLPlacemark的字面意思是地标，封装详细的地址位置信息
+
+**附：**CLPlacemark属性中英文对照表
+ ![](https://hanmeng1989.github.io/img/QQ20160711-2@2x_meitu_1.jpg)
+<p style="font-size:12px" align = center>CLPlacemark属性中英文对照表</p>
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="">一、概述</h2>
+
+<p>使用<code>CLGeocoder</code>可以完成“地理编码”和“反地理编码”</p>
+
+<ul>
+<li>地理编码：根据给定的地名，获得具体的位置信息（比如经纬度、地址的全称等）</li>
+<li>反地理编码：根据给定的经纬度，获得具体的位置信息</li>
+</ul>
+
+<h2 id="">二、地理编码</h2>
+
+<p>1.准备工作：界面搭建<br>
+用storyboard搭建界面，将界面中的控件拖线到@interface</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token variable">@property</span> <span class="token punctuation">(</span>weak<span class="token punctuation">,</span> nonatomic<span class="token punctuation">)</span> <span class="token constant">IBOutlet</span> <span class="token constant">UITextField</span> <span class="token operator">*</span>addressTextField<span class="token punctuation">;</span>
+
+<span class="token variable">@property</span> <span class="token punctuation">(</span>weak<span class="token punctuation">,</span> nonatomic<span class="token punctuation">)</span> <span class="token constant">IBOutlet</span> <span class="token constant">UILabel</span> <span class="token operator">*</span>longitude<span class="token punctuation">;</span>
+
+<span class="token variable">@property</span> <span class="token punctuation">(</span>weak<span class="token punctuation">,</span> nonatomic<span class="token punctuation">)</span> <span class="token constant">IBOutlet</span> <span class="token constant">UILabel</span> <span class="token operator">*</span>latitude<span class="token punctuation">;</span>
+
+<span class="token variable">@property</span> <span class="token punctuation">(</span>weak<span class="token punctuation">,</span> nonatomic<span class="token punctuation">)</span> <span class="token constant">IBOutlet</span> <span class="token constant">UILabel</span> <span class="token operator">*</span>detailLabel<span class="token punctuation">;</span>
+</code></pre>
+
+<p>2.创建地理编码对象</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 创建地理编码对象
+<span class="token constant">CLGeocoder</span> <span class="token operator">*</span>geoCoder <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">CLGeocoder</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>3.地理编码
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 地理编码
+<span class="token operator">/</span><span class="token operator">/</span> <span class="token constant">AddressString</span>需要地理编码的地址
+<span class="token punctuation">[</span>geoCoder geocodeAddressString<span class="token symbol">:self</span><span class="token punctuation">.</span>addressTextField<span class="token punctuation">.</span>text completionHandler<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token constant">NSArray</span><span class="token operator">&lt;</span><span class="token constant">CLPlacemark</span> <span class="token operator">*</span><span class="token operator">&gt;</span> <span class="token operator">*</span> _Nullable placemarks<span class="token punctuation">,</span> <span class="token constant">NSError</span> <span class="token operator">*</span> _Nullable error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">NSLog<span class="token punctuation">(</span></span>@<span class="token string">"%@"</span><span class="token punctuation">,</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token operator">/</span><span class="token operator">/</span> 实际开发中，通知是给一个列表，让用户自己去选择
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token constant">CLPlacemark</span> <span class="token operator">*</span>placemark <span class="token keyword">in</span> placemarks<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token function">NSLog<span class="token punctuation">(</span></span>@<span class="token string">"%@"</span><span class="token punctuation">,</span>placemark<span class="token punctuation">.</span>locality<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token constant">CLPlacemark</span> <span class="token operator">*</span>placeMark <span class="token operator">=</span> placemarks<span class="token punctuation">.</span>lastObject<span class="token punctuation">;</span>
+
+        <span class="token operator">/</span><span class="token operator">/</span> 经度
+        <span class="token keyword">self</span><span class="token punctuation">.</span>longitude<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">NSString</span> stringWithFormat<span class="token punctuation">:</span>@<span class="token string">"%f"</span><span class="token punctuation">,</span>placeMark<span class="token punctuation">.</span>location<span class="token punctuation">.</span>coordinate<span class="token punctuation">.</span>longitude<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token operator">/</span><span class="token operator">/</span> 纬度
+        <span class="token keyword">self</span><span class="token punctuation">.</span>latitude<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">NSString</span> stringWithFormat<span class="token punctuation">:</span>@<span class="token string">"%f"</span><span class="token punctuation">,</span>placeMark<span class="token punctuation">.</span>location<span class="token punctuation">.</span>coordinate<span class="token punctuation">.</span>latitude<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+        <span class="token operator">/</span><span class="token operator">/</span> 具体位置
+        <span class="token keyword">self</span><span class="token punctuation">.</span>detailLabel<span class="token punctuation">.</span>text <span class="token operator">=</span> placeMark<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p><strong>效果图：</strong>
+<img src="https://hanmeng1989.github.io/img/QQ20160711-0@2x.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">反地理编码效果图</p>
+
+<h2 id="">三、反地理编码</h2>
+
+<p>1.准备工作：界面搭建
+用storyboard搭建界面，将界面中的控件拖线到@interface</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token variable">@property</span> <span class="token punctuation">(</span>weak<span class="token punctuation">,</span> nonatomic<span class="token punctuation">)</span> <span class="token constant">IBOutlet</span> <span class="token constant">UITextField</span> <span class="token operator">*</span>longitude<span class="token punctuation">;</span>
+
+<span class="token variable">@property</span> <span class="token punctuation">(</span>weak<span class="token punctuation">,</span> nonatomic<span class="token punctuation">)</span> <span class="token constant">IBOutlet</span> <span class="token constant">UITextField</span> <span class="token operator">*</span>latitude<span class="token punctuation">;</span>
+
+<span class="token variable">@property</span> <span class="token punctuation">(</span>weak<span class="token punctuation">,</span> nonatomic<span class="token punctuation">)</span> <span class="token constant">IBOutlet</span> <span class="token constant">UILabel</span> <span class="token operator">*</span>addressLbl<span class="token punctuation">;</span>
+</code></pre>
+
+<p>2.创建地理编码</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 创建地理编码
+<span class="token constant">CLGeocoder</span> <span class="token operator">*</span>geocoder <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">CLGeocoder</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>3.反地理编码
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">/</span><span class="token operator">/</span> 反地理编码
+<span class="token constant">CLLocation</span> <span class="token operator">*</span>location <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">CLLocation</span> alloc<span class="token punctuation">]</span> initWithLatitude<span class="token symbol">:self</span><span class="token punctuation">.</span>latitude<span class="token punctuation">.</span>text<span class="token punctuation">.</span>doubleValue longitude<span class="token symbol">:self</span><span class="token punctuation">.</span>longitude<span class="token punctuation">.</span>text<span class="token punctuation">.</span>doubleValue<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">[</span>geocoder reverseGeocodeLocation<span class="token symbol">:location</span> completionHandler<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token constant">NSArray</span><span class="token operator">&lt;</span><span class="token constant">CLPlacemark</span> <span class="token operator">*</span><span class="token operator">&gt;</span> <span class="token operator">*</span> _Nullable placemarks<span class="token punctuation">,</span> <span class="token constant">NSError</span> <span class="token operator">*</span> _Nullable error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token operator">/</span><span class="token operator">/</span> 防错处理
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">NSLog<span class="token punctuation">(</span></span>@<span class="token string">"%@"</span><span class="token punctuation">,</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">self</span><span class="token punctuation">.</span>addressLbl<span class="token punctuation">.</span>text <span class="token operator">=</span> placemarks<span class="token punctuation">.</span>firstObject<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre>
+
+<p><strong>效果图</strong>
+  <img src="https://hanmeng1989.github.io/img/QQ20160711-1@2x.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">反地理编码效果图</p>
+
+<h2 id="clplacemark">四：CLPlacemark</h2>
+
+<p>CLPlacemark的字面意思是地标，封装详细的地址位置信息</p>
+
+<p><strong>附：</strong>CLPlacemark属性中英文对照表
+ <img src="https://hanmeng1989.github.io/img/QQ20160711-2@2x_meitu_1.jpg" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">CLPlacemark属性中英文对照表</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "lbsgeo.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
