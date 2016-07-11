@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##一、概述
+什么是库？<br>
+**库是程序代码的集合，是共享程序代码的一种方式。**
+
+根据源代码的公开情况，库可以分为2种类型：
+
+1. 开源库<br>
+公开源代码，能看到具体实现，比如SDWebImage、AFNetworking
+
+2. 闭源库 <br>
+不公开源代码，是经过编译后的二进制文件，看不到具体实现,如百度地图、友盟分享等<br>
+主要分为：*静态库、动态库*
+
+##二、静态库与动态库的使用
+1.静态库和动态库的存在形式
+<ul>
+<li>静态库：.a 和 .framework<br></li>
+<li>动态库：.dylib 和 .framework  (iOS9 取消了.dylib, 使用.tbd替代)</li>
+</ul>
+ 
+
+
+因此，得出结论：.a一定是静态库，.framework不一定是静态库
+
+2.静态库和动态库在使用上的区别<br>
+
+* 静态库：链接时，静态库会被完整地复制到可执行文件中，<span style="color:red">被多次使用就有多份冗余拷贝</span><span style="color:blue">（左图所示）</span>
+
+* 动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存<span style="color:blue">（右图所示）</span>
+
+![](https://hanmeng1989.github.io/img/)
+
+<p style = "font-size:12px" align = center>图.静态库与动态库在使用上的区别</p>
+<p style = "color:red">注意：
+项目中如果使用了自制的动态库，不能被上传到AppStore</p>
+
+
+
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="">一、概述</h2>
+
+<p>什么是库？<br>
+<strong>库是程序代码的集合，是共享程序代码的一种方式。</strong></p>
+
+<p>根据源代码的公开情况，库可以分为2种类型：</p>
+
+<ol>
+<li><p>开源库<br>
+公开源代码，能看到具体实现，比如SDWebImage、AFNetworking</p></li>
+<li><p>闭源库 <br>
+不公开源代码，是经过编译后的二进制文件，看不到具体实现,如百度地图、友盟分享等<br>
+主要分为：<em>静态库、动态库</em></p></li>
+</ol>
+
+<h2 id="">二、静态库与动态库的使用</h2>
+
+<p>1.静态库和动态库的存在形式</p>
+
+<ul>
+<li>静态库：.a 和 .framework<br></li>
+<li>动态库：.dylib 和 .framework  (iOS9 取消了.dylib, 使用.tbd替代)</li>
+</ul>
+
+<p>因此，得出结论：.a一定是静态库，.framework不一定是静态库</p>
+
+<p>2.静态库和动态库在使用上的区别<br></p>
+
+<ul>
+<li><p>静态库：链接时，静态库会被完整地复制到可执行文件中，<span style="color:red">被多次使用就有多份冗余拷贝</span><span style="color:blue">（左图所示）</span></p></li>
+<li><p>动态库：链接时不复制，程序运行时由系统动态加载到内存，供程序调用，系统只加载一次，多个程序共用，节省内存<span style="color:blue">（右图所示）</span></p></li>
+</ul>
+
+<p><img src="https://hanmeng1989.github.io/img/" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图.静态库与动态库在使用上的区别</p>
+
+<p style="color:red">注意：
+项目中如果使用了自制的动态库，不能被上传到AppStore</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "staticlib.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
