@@ -28,6 +28,15 @@
     doesn't do any harm and gives us a fresh start.
 */
 
+#back {
+    width: 700px;
+    padding-bottom: 400px;
+
+    background-image: url(http://i758.photobucket.com/albums/xx224/onevcat/ou-gi.jpg);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
