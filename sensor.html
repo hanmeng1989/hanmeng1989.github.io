@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##一、概述
+1. 什么是传感器？<br>
+传感器是一种感应\检测装置, 目前已经广泛应用于智能手机上
+
+2. 传感器的作用<br>
+用于感应\检测设备周边的信息<br>
+不同类型的传感器, 检测的信息也不一样
+
+3. iPhone中的下面现象都是由传感器完成的<br>
+<ul>
+<li>在地图应用中, 能判断出手机头面向的方向</li>
+<li>一关灯, iPhone会自动降低亮度让屏幕显得不是那么刺眼</li>
+<li>打电话时, 人脸贴近iPhone屏幕时, 屏幕会自动锁屏, 达到省电的目的</li>
+<li>... ... </li>
+</ul>
+
+##二、传感器的类型
+iPhone5中内置的传感器有
+
+* 运动传感器\加速度传感器\加速计（Motion/Accelerometer Sensor）
+* 环境光传感器（Ambient Light Sensor）
+* 距离传感器（Proximity Sensor）
+* 磁力计传感器（Magnetometer Sensor）
+* 内部温度传感器（Internal Temperature Sensor）
+* 湿度传感器（Moisture Sensor）
+* 陀螺仪（Gyroscope）
+* ... ...
+##三、各种类型传感器介绍
+1.运动传感器\加速度传感器\加速计（Motion/Accelerometer Sensor）<br>
+<ul>
+<li>最早出现在iOS设备上的传感器之一<br></li>
+<li>加速计用于检测设备在X、Y、Z轴上的加速度 （哪个方向有力的作用）</li>
+<li>加速计可以用于检测设备的摇晃，经典应用场景有：摇一摇，
+计步器</li>
+</ul>
+2.环境光传感器（Ambient Light Sensor）
+
+* 是iOS、Mac设备中最为古老的传感器成员
+
+* 它能够让你在使用 Mac、iPhone、iPad时，眼睛更为舒适
+
+应用场景： 
+
+* 从一个明亮的室外走入相对黑暗的室内后，iOS设备会自动调低亮度，让屏幕显得不再那么光亮刺眼 
+
+* 当你使用iPhone拍照时，闪光灯会在一定条件下自动开启
+
+* 几乎所有的Mac 都带有背光键盘，当周围光线弱到一定条件时，会自动开启键盘背光 
+
+![](https://hanmeng1989.github.io/img/)
+<p style="font-size:12px" align = center>图1.环境光传感器</p>
+
+3.距离传感器（Proximity Sensor）
+
+用于检测是否有其他物体靠近设备屏幕
+
+* 当你打电话或接电话时将电话屏幕贴近耳边，iPhone会自动关闭屏幕 ，好处是节省电量，防止耳朵或面部不小心触摸屏幕而引发一些不想要的意外操作 
+* 题外话：利用距离传感器，能找出很多电视剧的穿帮镜头
+
+![](https://hanmeng1989.github.io/img/)
+<p style="font-size:12px" align = center>图2.电视剧的穿帮镜头</p>
+4.磁力计传感器（Magnetometer Sensor）
+
+* 可以感应地球磁场， 获得方向信息， 使位置服务数据更精准
+* 可以用于电子罗盘和导航应用
+* iPad的Smart Cover盒盖睡眠操作就是基于磁力计传感器
+![](https://hanmeng1989.github.io/img/)
+<p style="font-size:12px" align = center>图3.磁力计传感器</p>
+
+5.内部温度传感器（Internal Temperature Sensor）
+
+* 从 iPad一代开始，iOS设备都加入了一个内部温度传感器，用于检测内部组件温度，当温度超过系统设定的阈值时,会出现以下提示 
+
+* 内部温度传感器，对于提升iOS设备自身安全性与稳定性有很大的帮助 
+![](https://hanmeng1989.github.io/img/)
+<p style="font-size:12px" align = center>图4.内部温度传感器</p>
+
+6.湿度传感器（Moisture Sensor）
+
+湿度传感器跟其他基于微电子的传感器不同，是一个简单的物理传感器，简单来说，湿度传感器就是一张遇水变红的试纸。
+
+Apple的维修人员就是通过检测试纸是否变红，来判断设备是否进水
+（设备进水不在保修范围之内）
+
+7.陀螺仪（Gyroscope）
+
+* 陀螺仪是随着iPhone4的上市首次出现在iOS设备上的传感器
+* 陀螺仪可以用于检测设备的持握方式
+* 陀螺仪的原理是检测设备在X、Y、Z轴上所旋转的角速度
+
+陀螺仪在赛车类游戏中有重大作用：
+
+* 模拟汽车驾驶时方向盘旋转的动作 
+* 使得这类游戏的操控体验更为真实 
+
+![](https://hanmeng1989.github.io/img/)
+<p style="font-size:12px" align = center>图5.陀螺仪坐标</p>
+##四、传感器总结
+
+![](https://hanmeng1989.github.io/img/)
+<p style="font-size:12px" align = center>图6. 传感器总结 </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="">一、概述</h2>
+
+<ol>
+<li><p>什么是传感器？<br>
+传感器是一种感应\检测装置, 目前已经广泛应用于智能手机上</p></li>
+<li><p>传感器的作用<br>
+用于感应\检测设备周边的信息<br>
+不同类型的传感器, 检测的信息也不一样</p></li>
+<li><p>iPhone中的下面现象都是由传感器完成的<br></p></li>
+</ol>
+
+<ul>
+<li>在地图应用中, 能判断出手机头面向的方向</li>
+<li>一关灯, iPhone会自动降低亮度让屏幕显得不是那么刺眼</li>
+<li>打电话时, 人脸贴近iPhone屏幕时, 屏幕会自动锁屏, 达到省电的目的</li>
+<li>... ... </li>
+</ul>
+
+<h2 id="">二、传感器的类型</h2>
+
+<p>iPhone5中内置的传感器有</p>
+
+<ul>
+<li>运动传感器\加速度传感器\加速计（Motion/Accelerometer Sensor）</li>
+<li>环境光传感器（Ambient Light Sensor）</li>
+<li>距离传感器（Proximity Sensor）</li>
+<li>磁力计传感器（Magnetometer Sensor）</li>
+<li>内部温度传感器（Internal Temperature Sensor）</li>
+<li>湿度传感器（Moisture Sensor）</li>
+<li>陀螺仪（Gyroscope）</li>
+<li>... ...</li>
+</ul>
+
+<h2 id="">三、各种类型传感器介绍</h2>
+
+<p>1.运动传感器\加速度传感器\加速计（Motion/Accelerometer Sensor）<br></p>
+
+<ul>
+<li>最早出现在iOS设备上的传感器之一<br></li>
+<li>加速计用于检测设备在X、Y、Z轴上的加速度 （哪个方向有力的作用）</li>
+<li>加速计可以用于检测设备的摇晃，经典应用场景有：摇一摇，
+计步器</li>
+</ul>
+
+<p>2.环境光传感器（Ambient Light Sensor）</p>
+
+<ul>
+<li><p>是iOS、Mac设备中最为古老的传感器成员</p></li>
+<li><p>它能够让你在使用 Mac、iPhone、iPad时，眼睛更为舒适</p></li>
+</ul>
+
+<p>应用场景： </p>
+
+<ul>
+<li><p>从一个明亮的室外走入相对黑暗的室内后，iOS设备会自动调低亮度，让屏幕显得不再那么光亮刺眼 </p></li>
+<li><p>当你使用iPhone拍照时，闪光灯会在一定条件下自动开启</p></li>
+<li><p>几乎所有的Mac 都带有背光键盘，当周围光线弱到一定条件时，会自动开启键盘背光 </p></li>
+</ul>
+
+<p><img src="https://hanmeng1989.github.io/img/" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图1.环境光传感器</p>
+
+<p>3.距离传感器（Proximity Sensor）</p>
+
+<p>用于检测是否有其他物体靠近设备屏幕</p>
+
+<ul>
+<li>当你打电话或接电话时将电话屏幕贴近耳边，iPhone会自动关闭屏幕 ，好处是节省电量，防止耳朵或面部不小心触摸屏幕而引发一些不想要的意外操作 </li>
+<li>题外话：利用距离传感器，能找出很多电视剧的穿帮镜头</li>
+</ul>
+
+<p><img src="https://hanmeng1989.github.io/img/" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图2.电视剧的穿帮镜头</p>
+
+<p>4.磁力计传感器（Magnetometer Sensor）</p>
+
+<ul>
+<li>可以感应地球磁场， 获得方向信息， 使位置服务数据更精准</li>
+<li>可以用于电子罗盘和导航应用</li>
+<li>iPad的Smart Cover盒盖睡眠操作就是基于磁力计传感器
+<img src="https://hanmeng1989.github.io/img/" alt="" title=""></li>
+</ul>
+
+<p style="font-size:12px" align="center">图3.磁力计传感器</p>
+
+<p>5.内部温度传感器（Internal Temperature Sensor）</p>
+
+<ul>
+<li><p>从 iPad一代开始，iOS设备都加入了一个内部温度传感器，用于检测内部组件温度，当温度超过系统设定的阈值时,会出现以下提示 </p></li>
+<li><p>内部温度传感器，对于提升iOS设备自身安全性与稳定性有很大的帮助 
+<img src="https://hanmeng1989.github.io/img/" alt="" title=""></p></li>
+</ul>
+
+<p style="font-size:12px" align="center">图4.内部温度传感器</p>
+
+<p>6.湿度传感器（Moisture Sensor）</p>
+
+<p>湿度传感器跟其他基于微电子的传感器不同，是一个简单的物理传感器，简单来说，湿度传感器就是一张遇水变红的试纸。</p>
+
+<p>Apple的维修人员就是通过检测试纸是否变红，来判断设备是否进水
+（设备进水不在保修范围之内）</p>
+
+<p>7.陀螺仪（Gyroscope）</p>
+
+<ul>
+<li>陀螺仪是随着iPhone4的上市首次出现在iOS设备上的传感器</li>
+<li>陀螺仪可以用于检测设备的持握方式</li>
+<li>陀螺仪的原理是检测设备在X、Y、Z轴上所旋转的角速度</li>
+</ul>
+
+<p>陀螺仪在赛车类游戏中有重大作用：</p>
+
+<ul>
+<li>模拟汽车驾驶时方向盘旋转的动作 </li>
+<li>使得这类游戏的操控体验更为真实 </li>
+</ul>
+
+<p><img src="https://hanmeng1989.github.io/img/" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图5.陀螺仪坐标</p>
+
+<h2 id="">四、传感器总结</h2>
+
+<p><img src="https://hanmeng1989.github.io/img/" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图6. 传感器总结 </p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "sensor.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
