@@ -387,6 +387,10 @@ a:focus {
     The 'imagination' step is again some boring font-sizing.
 */
 
+#smallworld {
+    width: 600px;
+}
+
 #imagination {
     width: 600px;
 }
