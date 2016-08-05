@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##上架时NSLog的处理
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们在写代码时，会写很多的NSLog进行调试，但是当程序上架后，如何处理这些NSLog呢？一个一个删除？当然这也可以，但是明显有点过于麻烦。所以我们就要找一个好一点的方法，在PCH中通过定义宏的方式来替换系统的NSLog就是一个非常好的方法。
+
+PCH中代码如下：
+~~~~{c}
+// 保证 #ifdef中的宏定义只会在OC中的代码中被引用
+// 否则，一旦引入C/C++的代码或者框架，就会出错！
+#ifdef __OBJC__
+
+#ifdef DEBUG
+#define NSLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define NSLog(...)
+
+#endif
+
+#endif
+~~~~
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中，`#ifdef  #endif` 的作用是预处理命令中条件编译，预处理命令主要包括三种：*1.宏定义 2.条件编译 3.文件包含*
+而`#ifdef __OBJC__ #endif`主要是为了保证 #ifdef中的宏定义只会在OC中的代码中被引用。否则，一旦引入C/C++的代码或者框架，就会出错！<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为宏定义的优先级高于系统的方法，所以定义了这个宏之后，宏定义的NSLog就会替换系统的NSLog,NSLog的颜色也会由原来系统方法的黑色变为宏定义的棕色，当程序的Build Configuration调整为Release状态时，打印便不会再执行。
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="nslog">上架时NSLog的处理</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们在写代码时，会写很多的NSLog进行调试，但是当程序上架后，如何处理这些NSLog呢？一个一个删除？当然这也可以，但是明显有点过于麻烦。所以我们就要找一个好一点的方法，在PCH中通过定义宏的方式来替换系统的NSLog就是一个非常好的方法。</p>
+
+<p>PCH中代码如下：</p>
+
+<pre class=" language-c"><code class=" language-c"><span class="token comment" spellcheck="true">// 保证 #ifdef中的宏定义只会在OC中的代码中被引用
+</span><span class="token comment" spellcheck="true">// 否则，一旦引入C/C++的代码或者框架，就会出错！
+</span><span class="token property">#ifdef __OBJC__</span>
+
+<span class="token property">#ifdef DEBUG</span>
+<span class="token property">#define NSLog(fmt, ...) NSLog((@</span><span class="token string">"%s [Line %d] "</span> fmt<span class="token punctuation">)</span><span class="token punctuation">,</span> __PRETTY_FUNCTION__<span class="token punctuation">,</span> __LINE__<span class="token punctuation">,</span> ##__VA_ARGS__<span class="token punctuation">)</span>
+#<span class="token keyword">else</span>
+<span class="token property">#define NSLog(...)</span>
+
+#endif
+
+#endif
+</code></pre>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其中，<code>#ifdef  #endif</code> 的作用是预处理命令中条件编译，预处理命令主要包括三种：<em>1.宏定义 2.条件编译 3.文件包含</em>
+而<code>#ifdef __OBJC__ #endif</code>主要是为了保证 #ifdef中的宏定义只会在OC中的代码中被引用。否则，一旦引入C/C++的代码或者框架，就会出错！<br></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为宏定义的优先级高于系统的方法，所以定义了这个宏之后，宏定义的NSLog就会替换系统的NSLog,NSLog的颜色也会由原来系统方法的黑色变为宏定义的棕色，当程序的Build Configuration调整为Release状态时，打印便不会再执行。</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "NSLog.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
