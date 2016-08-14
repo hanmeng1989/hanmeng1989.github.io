@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很多人曾问我读了这么多书到底有什么用？我通常都是这么回答的，读一本书两本书并不能引起什么变化，只是当时记住了一些东西，过一段时间就忘却了。而读100本书200本书时就会产生较为明显的变化了，所谓量变引起质变。读书会对人产生潜移默化的思想，它在一点点改变着自己的思想，读好书便会产生好的思想，读滥书便会有滥的思想。而下面这段话，更明确的说明了读书的作用。
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读使人心静，使人聪慧，使人愉悦，优秀的文学作品更是如此。正如英国散文家、哲学家培根曾说过的那样：“读书足以怡情，足以傅彩，足以长才。”而每一个人，无论年龄大小，工作如何，最应该读的就是文学作品。每一位读过文学作品的读者都不难发现，文学作品的作用是潜移默化的。它不是在说教，也不是在宣传，而是像一杯淡淡的清茶滋润着我们的内心，像一双温暖的手抚摸和慰藉着我们的心灵。我们在无意识中与作品中的主人公一起欢笑，一起悲伤，一起经历，一起感悟。在这样的一个过程中，文学作品给予了我们独特的审美体验，让我们领悟到了生命和生活的意义，懂得了什么是爱，什么是善，什么是恶。<br>
+　　文学是人性和社会的一面镜子，又是滋养人类心灵的沃土，优秀的文学作品能给人以思想的启迪和审美的愉悦，无论哪个年代，阅读文学作品的人都不会孤独，而一些经典名著更是人类不可或缺的精神食粮。
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很多人曾问我读了这么多书到底有什么用？我通常都是这么回答的，读一本书两本书并不能引起什么变化，只是当时记住了一些东西，过一段时间就忘却了。而读100本书200本书时就会产生较为明显的变化了，所谓量变引起质变。读书会对人产生潜移默化的思想，它在一点点改变着自己的思想，读好书便会产生好的思想，读滥书便会有滥的思想。而下面这段话，更明确的说明了读书的作用。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读使人心静，使人聪慧，使人愉悦，优秀的文学作品更是如此。正如英国散文家、哲学家培根曾说过的那样：“读书足以怡情，足以傅彩，足以长才。”而每一个人，无论年龄大小，工作如何，最应该读的就是文学作品。每一位读过文学作品的读者都不难发现，文学作品的作用是潜移默化的。它不是在说教，也不是在宣传，而是像一杯淡淡的清茶滋润着我们的内心，像一双温暖的手抚摸和慰藉着我们的心灵。我们在无意识中与作品中的主人公一起欢笑，一起悲伤，一起经历，一起感悟。在这样的一个过程中，文学作品给予了我们独特的审美体验，让我们领悟到了生命和生活的意义，懂得了什么是爱，什么是善，什么是恶。<br>
+　　文学是人性和社会的一面镜子，又是滋养人类心灵的沃土，优秀的文学作品能给人以思想的启迪和审美的愉悦，无论哪个年代，阅读文学作品的人都不会孤独，而一些经典名著更是人类不可或缺的精神食粮。</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "lundushu.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
