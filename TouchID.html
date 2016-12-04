@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##iOS中调用指纹识别
+&nbsp;&nbsp;&nbsp;&nbsp;苹果从iPhone5S开始,具有指纹识别技术。但是，是从iOS8.0之后程序员具有使用指纹识别的权利——苹果允许第三方 App 使用 Touch ID 实现免密码登陆。
+尤其在支付功能中，iOS中指纹识别功能的应用越来越广。
+
+&nbsp;&nbsp;&nbsp;&nbsp;下面就来介绍如何在App中使用指纹识别功能。
+
+1.导入框架LocalAuthentication
+~~~~{ruby}
+#import <LocalAuthentication/LocalAuthentication.h>
+~~~~
+2.创建上下文、判断指纹识别是否可用、开启指纹识别<br>
+具体代码如下：<br>
+~~~~{ruby}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    // 1.创建一个上下文
+    LAContext *context = [[LAContext alloc] init];
+    
+    // 2.判断指纹识别是否可用
+    if ([context canEvaluatePolicy:LAPolicyDeviceOwnerAuthentication error:nil]) {
+        
+        // 3.开启指纹识别
+        // LAPolicyDeviceOwnerAuthenticationWithBiometrics iOS 8 方法，不能输入密码
+        // LAPolicyDeviceOwnerAuthentication iOS 9 方法，可以让用户指纹不能验证时输入密码
+        [context evaluatePolicy:LAPolicyDeviceOwnerAuthentication localizedReason:@"指纹识别更安全" reply:^(BOOL success, NSError * _Nullable error) {
+            if (error) {
+                // 连续3次没有验证成功 报错误
+                // code = -1  指纹不对
+                // code = -3 在iOS8 iOS8 LAPolicyDeviceOwnerAuthenticationWithBiometrics情况下点击了输入密码
+                // code = -2 用户点击了取消
+                NSLog(@"错误码：%zd",error.code);
+            }
+            if (success) {
+                NSLog(@"验证成功");
+            }
+        }];
+    }
+    
+}
+
+~~~~
+
+此时，指纹识别即可成功验证，可以在success中进行你想要的操作。<br>
+
+验证不成功时图片如下：
+
+
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="ios">iOS中调用指纹识别</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;苹果从iPhone5S开始,具有指纹识别技术。但是，是从iOS8.0之后程序员具有使用指纹识别的权利——苹果允许第三方 App 使用 Touch ID 实现免密码登陆。
+尤其在支付功能中，iOS中指纹识别功能的应用越来越广。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;下面就来介绍如何在App中使用指纹识别功能。</p>
+
+<p>1.导入框架LocalAuthentication</p>
+
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token comment" spellcheck="true">#import &lt;LocalAuthentication/LocalAuthentication.h&gt;
+</span></code></pre>2.创建上下文、判断指纹识别是否可用、开启指纹识别<br>
+具体代码如下：<br>
+<pre class=" language-ruby"><code class=" language-ruby"><span class="token operator">-</span> <span class="token punctuation">(</span>void<span class="token punctuation">)</span>touchesBegan<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">NSSet</span><span class="token operator">&lt;</span><span class="token constant">UITouch</span> <span class="token operator">*</span><span class="token operator">&gt;</span> <span class="token operator">*</span><span class="token punctuation">)</span>touches withEvent<span class="token punctuation">:</span><span class="token punctuation">(</span><span class="token constant">UIEvent</span> <span class="token operator">*</span><span class="token punctuation">)</span>event<span class="token punctuation">{</span>
+    <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">1</span><span class="token punctuation">.</span>创建一个上下文
+    <span class="token constant">LAContext</span> <span class="token operator">*</span>context <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">LAContext</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">.</span>判断指纹识别是否可用
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">[</span>context canEvaluatePolicy<span class="token symbol">:LAPolicyDeviceOwnerAuthentication</span> error<span class="token symbol">:nil</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token operator">/</span><span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">.</span>开启指纹识别
+        <span class="token operator">/</span><span class="token operator">/</span> <span class="token constant">LAPolicyDeviceOwnerAuthenticationWithBiometrics</span> iOS <span class="token number">8</span> 方法，不能输入密码
+        <span class="token operator">/</span><span class="token operator">/</span> <span class="token constant">LAPolicyDeviceOwnerAuthentication</span> iOS <span class="token number">9</span> 方法，可以让用户指纹不能验证时输入密码
+        <span class="token punctuation">[</span>context evaluatePolicy<span class="token symbol">:LAPolicyDeviceOwnerAuthentication</span> localizedReason<span class="token punctuation">:</span>@<span class="token string">"指纹识别更安全"</span> reply<span class="token punctuation">:</span><span class="token operator">^</span><span class="token punctuation">(</span><span class="token constant">BOOL</span> success<span class="token punctuation">,</span> <span class="token constant">NSError</span> <span class="token operator">*</span> _Nullable error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token operator">/</span><span class="token operator">/</span> 连续<span class="token number">3</span>次没有验证成功 报错误
+                <span class="token operator">/</span><span class="token operator">/</span> code <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span>  指纹不对
+                <span class="token operator">/</span><span class="token operator">/</span> code <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">3</span> 在iOS8 iOS8 <span class="token constant">LAPolicyDeviceOwnerAuthenticationWithBiometrics</span>情况下点击了输入密码
+                <span class="token operator">/</span><span class="token operator">/</span> code <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span> 用户点击了取消
+                <span class="token function">NSLog<span class="token punctuation">(</span></span>@<span class="token string">"错误码：%zd"</span><span class="token punctuation">,</span>error<span class="token punctuation">.</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>success<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">NSLog<span class="token punctuation">(</span></span>@<span class="token string">"验证成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+
+</code></pre>
+
+<p>此时，指纹识别即可成功验证，可以在success中进行你想要的操作。<br></p>
+
+<p>验证不成功时图片如下：</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "TouchID.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
