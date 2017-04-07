@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+&nbsp;如果需要将UIView的4个角全部都为圆角，做法相当简单，只需设置其Layer的cornerRadius属性即可。而若要指定某几个角（小于4）为圆角而别的不变时，这种方法就不好用了。<br>
+<br/>
+对于这种情况，Stackoverflow上提供了几种解决方案。其中最简单优雅的方案，就是使用UIBezierPath。下面给出一段示例代码。
+~~~~{ruby}
+UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(120, 10, 80, 80)];
+view2.backgroundColor = [UIColor redColor];
+[self.view addSubview:view2];
+    
+UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view2.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(10, 10)];
+CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+maskLayer.frame = view2.bounds;
+maskLayer.path = maskPath.CGPath;
+view2.layer.mask = maskLayer;
+~~~~
+其中，<br/>
+~~~~{ruby}
+byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight
+~~~~
+指定了需要成为圆角的角。该参数是`UIRectCorner`类型的，可选的值有：
+~~~~{ruby}
+
+* UIRectCornerTopLeft
+* UIRectCornerTopRight
+* UIRectCornerBottomLeft
+* UIRectCornerBottomRight
+* UIRectCornerAllCorners
+~~~~
+从名字很容易看出来代表的意思，使用“|”来组合就好了。
+
+![](https://hanmeng1989.github.io/img/IMG_2077.PNG)
+<p style="font-size:12px" align = center>图.示例代码效果图</p>
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<p>&nbsp;如果需要将UIView的4个角全部都为圆角，做法相当简单，只需设置其Layer的cornerRadius属性即可。而若要指定某几个角（小于4）为圆角而别的不变时，这种方法就不好用了。<br>
+<br>
+对于这种情况，Stackoverflow上提供了几种解决方案。其中最简单优雅的方案，就是使用UIBezierPath。下面给出一段示例代码。
+</p><pre class=" language-ruby"><code class=" language-ruby"><span class="token constant">UIView</span> <span class="token operator">*</span>view2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">UIView</span> alloc<span class="token punctuation">]</span> initWithFrame<span class="token symbol">:CGRectMake</span><span class="token punctuation">(</span><span class="token number">120</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+view2<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">UIColor</span> redColor<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">.</span>view addSubview<span class="token symbol">:view2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+</code><p><code class=" language-ruby"><span class="token constant">UIBezierPath</span> <span class="token operator">*</span>maskPath <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token constant">UIBezierPath</span> bezierPathWithRoundedRect<span class="token symbol">:view2</span><span class="token punctuation">.</span>bounds byRoundingCorners<span class="token symbol">:UIRectCornerBottomLeft</span> <span class="token operator">|</span> <span class="token constant">UIRectCornerBottomRight</span> cornerRadii<span class="token symbol">:CGSizeMake</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token constant">CAShapeLayer</span> <span class="token operator">*</span>maskLayer <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token constant">CAShapeLayer</span> alloc<span class="token punctuation">]</span> init<span class="token punctuation">]</span><span class="token punctuation">;</span>
+maskLayer<span class="token punctuation">.</span>frame <span class="token operator">=</span> view2<span class="token punctuation">.</span>bounds<span class="token punctuation">;</span>
+maskLayer<span class="token punctuation">.</span>path <span class="token operator">=</span> maskPath<span class="token punctuation">.</span><span class="token constant">CGPath</span><span class="token punctuation">;</span>
+view2<span class="token punctuation">.</span>layer<span class="token punctuation">.</span>mask <span class="token operator">=</span> maskLayer<span class="token punctuation">;</span>
+</code></p></pre>其中，<br>
+<pre class=" language-ruby"><code class=" language-ruby">byRoundingCorners<span class="token symbol">:UIRectCornerBottomLeft</span> <span class="token operator">|</span> <span class="token constant">UIRectCornerBottomRight</span>
+</code></pre>指定了需要成为圆角的角。该参数是<code>UIRectCorner</code>类型的，可选的值有：
+<pre class=" language-ruby"><code class=" language-ruby">
+<span class="token operator">*</span> <span class="token constant">UIRectCornerTopLeft</span>
+<span class="token operator">*</span> <span class="token constant">UIRectCornerTopRight</span>
+<span class="token operator">*</span> <span class="token constant">UIRectCornerBottomLeft</span>
+<span class="token operator">*</span> <span class="token constant">UIRectCornerBottomRight</span>
+<span class="token operator">*</span> <span class="token constant">UIRectCornerAllCorners</span>
+</code></pre>从名字很容易看出来代表的意思，使用“|”来组合就好了。<p></p>
+
+<p><img src="https://hanmeng1989.github.io/img/IMG_2077.PNG" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图.示例代码效果图</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "uiview.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
