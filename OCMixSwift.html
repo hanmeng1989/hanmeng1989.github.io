@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+##一、概要
+
+首先看`《The Swift Programming Language》`中提到`“Swift’s compatibility with Objective-C lets you create a project that contains files written in either language. ”`，意思是在一个项目中可以混合使用Swift和Objective-C，你可能有疑问了：
+
+1、如何让两种语言在一个项目中使用？ 
+
+2、混编的项目是“Swift项目”还是“OC项目”？
+
+3、混编过程中，需要注意哪些细节？
+
+仅凭看文档可能会感觉没有头绪，所以还是实际动手试一试吧。
+
+##二、混编
+
+1、OC项目中混编
+
+（1）首先创建一个项目，命名TestOC，语言选择Objective-C
+
+（2）创建好项目后，在项目中添加一个新文件 New File -> Cocoa Class 语言选择Swift，命名为FileTest，选择Create的时候，会弹出如下页面：
+![](http://hanmeng1989.github.io/img/OCMixSwift/FileTest.png)
+<p style="font-size:12px" align = center>图1. 创建FileTest.swift </p>
+
+
+选择Yes，然后Xcode不仅创建了 FileTest.swift 文件，还创建了 TestOC-Bridging-Header.h 文件
+![](http://hanmeng1989.github.io/img/OCMixSwift/TestOC-Bridging-Header.jpg)
+<p style="font-size:12px" align = center>图2. 创建TestOC-Bridging-Header.h</p>
+
+
+这个文件什么作用，看文档：
+![](http://hanmeng1989.github.io/img/OCMixSwift/ProName-Bridging-Header.png)
+<p style="font-size:12px" align = center>图3. ProName-Bridging-Header 桥接作用</p>
+
+向一个OC项目中添加Swift文件或者向一个Swift项目中添加OC文件，Xcode会自动生成ProName-Bridging-Header.h，作用就是告诉OC项目或Swift项目，这个Swift文件或者OC文件对外提供的内容，从命名“Bridging”也能大概猜到文件的用意。<br>
+选择直接编译会报错，不要着急，修改刚创建的文件 FileTest.swift 中的代码：
+~~~~{ruby}
+import Foundation
+
+@objc(FileTest)
+class FileTest: NSObject {
+    @objc(initWithData:)
+    init (data: String) {
+        println(data)
+    }
+}
+~~~~
+这里看到了 @objc()这种奇怪到写法，官网是这样描述的，意思是用 @objc()想让一个Swift类被OC调用
+![](http://hanmeng1989.github.io/img/OCMixSwift/objc.jpg)
+<p style="font-size:12px" align = center>图4. @objc()写法</p>
+
+ 选择Swift文件中的类也定义好了，但发现在OC没办法调用，因为OC选择找不到 FileTest 类，这就需要配置一个参数：Build Setting -> Product Module Name，默认是没有配置的，Target -> Build Setting  ->Defines Module修改成Yes：
+![](http://hanmeng1989.github.io/img/OCMixSwift/Product%20Module%20Name.png)
+<p style="font-size:12px" align = center>图5. Product Module Name设置</p>
+选择在需要使用Swift文件类的地方引入头文件：#import "MyTest-Swift.h"，然后在看效果：
+![](http://hanmeng1989.github.io/img/OCMixSwift/import.png)
+<p style="font-size:12px" align = center>图6. #import "MyTest-Swift.h"</p>
+
+Swift中定义的类，可以在OC中使用了，MyTest-Swift.h 文件是什么？他是Xcode自动创建的，点击进去看看里边有什么：
+![](http://hanmeng1989.github.io/img/OCMixSwift/MyTest-Swift.png)
+<p style="font-size:12px" align = center>图7. MyTest-Swift.h</p>
+
+
+原文链接地址：
+<a href="http://www.itkeyword.com/doc/1037733855125877x185/java" target="_blank">http://www.itkeyword.com/doc/1037733855125877x185/java</a>
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<h2 id="">一、概要</h2>
+
+<p>首先看<code>《The Swift Programming Language》</code>中提到<code>“Swift’s compatibility with Objective-C lets you create a project that contains files written in either language. ”</code>，意思是在一个项目中可以混合使用Swift和Objective-C，你可能有疑问了：</p>
+
+<p>1、如何让两种语言在一个项目中使用？ </p>
+
+<p>2、混编的项目是“Swift项目”还是“OC项目”？</p>
+
+<p>3、混编过程中，需要注意哪些细节？</p>
+
+<p>仅凭看文档可能会感觉没有头绪，所以还是实际动手试一试吧。</p>
+
+<h2 id="">二、混编</h2>
+
+<p>1、OC项目中混编</p>
+
+<p>（1）首先创建一个项目，命名TestOC，语言选择Objective-C</p>
+
+<p>（2）创建好项目后，在项目中添加一个新文件 New File -&gt; Cocoa Class 语言选择Swift，命名为FileTest，选择Create的时候，会弹出如下页面：
+<img src="http://hanmeng1989.github.io/img/OCMixSwift/FileTest.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图1. 创建FileTest.swift </p>
+
+<p>选择Yes，然后Xcode不仅创建了 FileTest.swift 文件，还创建了 TestOC-Bridging-Header.h 文件
+<img src="http://hanmeng1989.github.io/img/OCMixSwift/TestOC-Bridging-Header.jpg" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图2. 创建TestOC-Bridging-Header.h</p>
+
+<p>这个文件什么作用，看文档：
+<img src="http://hanmeng1989.github.io/img/OCMixSwift/ProName-Bridging-Header.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图3. ProName-Bridging-Header 桥接作用</p>
+
+<p>向一个OC项目中添加Swift文件或者向一个Swift项目中添加OC文件，Xcode会自动生成ProName-Bridging-Header.h，作用就是告诉OC项目或Swift项目，这个Swift文件或者OC文件对外提供的内容，从命名“Bridging”也能大概猜到文件的用意。<br>
+选择直接编译会报错，不要着急，修改刚创建的文件 FileTest.swift 中的代码：
+</p><pre class=" language-ruby"><code class=" language-ruby">import <span class="token constant">Foundation</span>
+
+</code><p><code class=" language-ruby"><span class="token variable">@objc</span><span class="token punctuation">(</span><span class="token constant">FileTest</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">FileTest</span><span class="token punctuation">:</span> <span class="token constant">NSObject</span> <span class="token punctuation">{</span>
+    <span class="token variable">@objc</span><span class="token punctuation">(</span>initWithData<span class="token punctuation">:</span><span class="token punctuation">)</span>
+    init <span class="token punctuation">(</span>data<span class="token punctuation">:</span> <span class="token builtin">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">println<span class="token punctuation">(</span></span>data<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></p></pre>这里看到了 @objc()这种奇怪到写法，官网是这样描述的，意思是用 @objc()想让一个Swift类被OC调用
+<img src="http://hanmeng1989.github.io/img/OCMixSwift/objc.jpg" alt="" title=""><p></p>
+
+<p style="font-size:12px" align="center">图4. @objc()写法</p>
+
+<p>选择Swift文件中的类也定义好了，但发现在OC没办法调用，因为OC选择找不到 FileTest 类，这就需要配置一个参数：Build Setting -&gt; Product Module Name，默认是没有配置的，Target -&gt; Build Setting  -&gt;Defines Module修改成Yes：
+<img src="http://hanmeng1989.github.io/img/OCMixSwift/Product%20Module%20Name.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图5. Product Module Name设置</p>
+
+<p>选择在需要使用Swift文件类的地方引入头文件：#import "MyTest-Swift.h"，然后在看效果：
+<img src="http://hanmeng1989.github.io/img/OCMixSwift/import.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图6. #import "MyTest-Swift.h"</p>
+
+<p>Swift中定义的类，可以在OC中使用了，MyTest-Swift.h 文件是什么？他是Xcode自动创建的，点击进去看看里边有什么：
+<img src="http://hanmeng1989.github.io/img/OCMixSwift/MyTest-Swift.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图7. MyTest-Swift.h</p>
+
+<p>原文链接地址：
+<a href="http://www.itkeyword.com/doc/1037733855125877x185/java" target="_blank">http://www.itkeyword.com/doc/1037733855125877x185/java</a></p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "OCMixSwift.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
