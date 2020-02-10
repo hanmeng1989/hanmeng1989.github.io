@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="Keywords" content="blog"/>
+    <meta name="Description" content="blog"/>
+    <title>Simple</title>
+    <link rel="shortcut icon" href="/static/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69110428-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+    	<ul id="pages">
+            <li><a href="/">home</a></li>
+            <li><a href="/#/tags">tags</a></li>
+            <li><a href="/#/archive">archive</a></li>
+    	</ul>
+    </div>
+	<div class="wrap-header">
+	<h1>
+    <a href="/" id="title"></a>
+	</h1>
+	</div>
+<div id="md" style="display: none;">
+<!-- markdown -->
+XCode工程中有个文件夹xuserdata,这个铁头娃文件更新非常频繁，每次commit都有他。眼不见心不烦我们可以设置在提交的时候忽略这个文件。
+
+此文件中存放内容：
+
+1.Xcode默认会记住我们当前正在编辑的文件，也就是上次退出项目时停留的文件，下次打开项目会停留在该文件。我们不需要把这些信息共享给同事，所以需要忽略。</br>
+2.Xcode会记录目录的打开情况。同事不需要共享。</br>
+3.断点信息。同事不需要共享。</br>
+以上三个需要忽略的信息，都在xcuserdata 文件夹下，所以只需要忽略xcuserdata文件夹。
+
+##1、设置 cornerstone的全局忽略文件：
+cornerstone -> preferences -> subversion
+
+1、取消勾选 use default global ignores。
+
+2、然后编辑忽略文件。
+
+3、点击save。
+![](http://hanmeng1989.github.io/img/cornerstoneIgnore/preferences.png)
+<p style="font-size:12px" align = center>图1. 设置需要忽略的文件</p>
+
+##2、忽略指定文件/文件夹
+选中右键选择 Ignore
+![](http://hanmeng1989.github.io/img/cornerstoneIgnore/addIgnore.png)
+<p style="font-size:12px" align = center>图2. 忽略指定文件/文件夹</p>
+
+忽略成功后<br>
+![](http://hanmeng1989.github.io/img/cornerstoneIgnore/ignore_success.png)
+<p style="font-size:12px" align = center>图3. 忽略成功后</p>
+##3、取消忽略
+删除上图中的忽略项目 点击保存
+
+##4、有些同学发现在preferences中设置后 没什么卵用。文件夹还是会显示在上面。 右键选中指定文件之后Igonre却是灰色的。
+是因为：
+
+`Cornerstone can only ignore unversioned files. Once a file has been added to a working copy it can no longer be ignored.`
+
+已经添加working copy的文件是不能被忽略的。working-copies
+
+解决方法：
+
+1、备份文件
+
+2、删除文件
+
+3、提交
+
+4、把备份文件重新放入原地址（如果在preferences中设置了忽略文件，此文件不会显示在工作空间中）
+<!-- markdown end -->
+</div>
+<div class="entry" id="main">
+<!-- content -->
+<p>XCode工程中有个文件夹xuserdata,这个铁头娃文件更新非常频繁，每次commit都有他。眼不见心不烦我们可以设置在提交的时候忽略这个文件。</p>
+
+<p>此文件中存放内容：</p>
+
+<p>1.Xcode默认会记住我们当前正在编辑的文件，也就是上次退出项目时停留的文件，下次打开项目会停留在该文件。我们不需要把这些信息共享给同事，所以需要忽略。<br>
+2.Xcode会记录目录的打开情况。同事不需要共享。<br>
+3.断点信息。同事不需要共享。<br>
+以上三个需要忽略的信息，都在xcuserdata 文件夹下，所以只需要忽略xcuserdata文件夹。</p>
+
+<h2 id="1cornerstone">1、设置 cornerstone的全局忽略文件：</h2>
+
+<p>cornerstone -&gt; preferences -&gt; subversion</p>
+
+<p>1、取消勾选 use default global ignores。</p>
+
+<p>2、然后编辑忽略文件。</p>
+
+<p>3、点击save。
+<img src="http://hanmeng1989.github.io/img/cornerstoneIgnore/preferences.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图1. 设置需要忽略的文件</p>
+
+<h2 id="2">2、忽略指定文件/文件夹</h2>
+
+<p>选中右键选择 Ignore
+<img src="http://hanmeng1989.github.io/img/cornerstoneIgnore/addIgnore.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图2. 忽略指定文件/文件夹</p>
+
+<p>忽略成功后<br>
+<img src="http://hanmeng1989.github.io/img/cornerstoneIgnore/ignore_success.png" alt="" title=""></p>
+
+<p style="font-size:12px" align="center">图3. 忽略成功后</p>
+
+<h2 id="3">3、取消忽略</h2>
+
+<p>删除上图中的忽略项目 点击保存</p>
+
+<h2 id="4preferencesigonre">4、有些同学发现在preferences中设置后 没什么卵用。文件夹还是会显示在上面。 右键选中指定文件之后Igonre却是灰色的。</h2>
+
+<p>是因为：</p>
+
+<p><code>Cornerstone can only ignore unversioned files. Once a file has been added to a working copy it can no longer be ignored.</code></p>
+
+<p>已经添加working copy的文件是不能被忽略的。working-copies</p>
+
+<p>解决方法：</p>
+
+<p>1、备份文件</p>
+
+<p>2、删除文件</p>
+
+<p>3、提交</p>
+
+<p>4、把备份文件重新放入原地址（如果在preferences中设置了忽略文件，此文件不会显示在工作空间中）</p>
+<!-- content end -->
+</div>
+<br>
+<br>
+    <div id="disqus_thread"></div>
+	<div class="footer">
+		<p>© Copyright 2014 by isnowfy, Designed by isnowfy</p>
+	</div>
+</div>
+<script src="main.js"></script>
+<script id="content" type="text/mustache">
+    <h1>{{title}}</h1>
+    <div class="tag">
+    {{date}}
+    {{#tags}}
+    <a href="/#/tag/{{name}}">#{{name}}</a>
+    {{/tags}}
+    </div>
+</script>
+<script id="pagesTemplate" type="text/mustache">
+    {{#pages}}
+    <li>
+        <a href="{{path}}">{{title}}</a>
+    </li>
+    {{/pages}}
+</script>
+<script>
+$(document).ready(function() {
+    $.ajax({
+        url: "main.json",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            $("#title").html(data.name);
+            var pagesTemplate = Hogan.compile($("#pagesTemplate").html());
+            var pagesHtml = pagesTemplate.render({"pages": data.pages});
+            $("#pages").append(pagesHtml);
+            //path
+            var path = "cornerstoneIgnore.html";
+            //path end
+            var now = 0;
+            for (var i = 0; i < data.posts.length; ++i)
+                if (path == data.posts[i].path)
+                    now = i;
+            var post = data.posts[now];
+            var tmp = post.tags.split(" ");
+            var tags = [];
+            for (var i = 0; i < tmp.length; ++i)
+                if (tmp[i].length > 0)
+                    tags.push({"name": tmp[i]});
+            var contentTemplate = Hogan.compile($("#content").html());
+            var contentHtml = contentTemplate.render({"title": post.title, "tags": tags, "date": post.date});
+            $("#main").prepend(contentHtml);
+            if (data.disqus_shortname.length > 0) {
+                var disqus_shortname = data.disqus_shortname;
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            }
+        }
+    });
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ["\\(", "\\)"]], processEscapes: true}});
+</script>
+</body>
+</html>
